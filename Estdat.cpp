@@ -1,9 +1,7 @@
 #include "Estdat.h"
+#include "menu.h"
 
 //MessageBox(handler, L"", L"", MB_OK);
-
-//BOOL CALLBACK iniciarSeccion(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam);
-
 
 BOOL CALLBACK iniciarSeccion(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 	switch (mensaje)
@@ -11,10 +9,14 @@ BOOL CALLBACK iniciarSeccion(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 	case WM_COMMAND: {
 		switch (LOWORD(wParam))
 		{
+		case ID_iniciarSesion: {
+			EndDialog(handler, 0);
+			DialogBox(NULL, MAKEINTRESOURCE(IDD_Menu), NULL, (DLGPROC)menu);
+		}
 
 
 		default:
-			break;
+			return 0;
 		}
 	}
 
@@ -27,13 +29,14 @@ BOOL CALLBACK iniciarSeccion(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 		return 0;
 	}
 
+
 	case WM_DESTROY: {
 		PostQuitMessage(0);
 		return 0;
 	}
 
 	default:
-		break;
+		return 0;
 	}
 	return false;
 }
