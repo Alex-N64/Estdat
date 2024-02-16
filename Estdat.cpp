@@ -22,7 +22,7 @@ BOOL CALLBACK iniciarSeccion(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 
 	case WM_CLOSE: {
 
-		if (MessageBox(handler, L"Really quit?", L"My application", MB_OKCANCEL) == IDOK)
+		if (MessageBox(handler, L"¿Desea salir de la aplicación?. Los cambios serán guardados.", L"My application", MB_OKCANCEL) == IDOK)
 		{
 			DestroyWindow(handler);
 		}
