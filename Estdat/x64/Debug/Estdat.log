@@ -1,5 +1,2 @@
 ﻿  Estdat.cpp
-C:\Users\alexi\OneDrive - Universidad Autonoma de Nuevo León\Semestres\8vo Semestre\Estructura de datos\Estdat\menu.h(14,3): warning C4065: la instrucción switch contiene etiquetas 'default' pero no etiquetas 'case'
-  (compilando archivo de origen "Estdat.cpp")
-  
-  Estdat.vcxproj -> C:\Users\alexi\OneDrive - Universidad Autonoma de Nuevo León\Semestres\8vo Semestre\Estructura de datos\Estdat\x64\Debug\Estdat.exe
+  Estdat.vcxproj -> C:\Users\alexi\Documents\GitHub Clone\Fcfm\Estdat\x64\Debug\Estdat.exe
