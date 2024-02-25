@@ -16,14 +16,26 @@
 #define IDD_Menu                        130
 #define IDD_DIALOG1                     131
 #define IDD_VUELO_REGISTRO              132
+#define IDD_DIALOG3                     133
 #define IDD_PASAJEROS_REGISTRO          134
 #define IDD_BOLETOS_REGISTRO            135
 #define IDD_DIALOG2                     136
 #define IDD_MISC_                       136
+#define IDD_VUELO_MODIFICAR             137
+#define IDD_VUELOS_ELIMINAR             138
+#define IDD_VUELO_ELIMINAR              138
 #define ID_iniciarSesion                1000
 #define IDC_EDIT1                       1002
 #define IDD_crearUsuario                1003
+#define IDC_EDIT3                       1003
 #define IDC_EDIT2                       1004
+#define IDC_DATETIMEPICKER1             1004
+#define IDC_DATETIMEPICKER2             1005
+#define IDC_EDIT4                       1006
+#define IDC_COMBO1                      1007
+#define IDC_EDIT5                       1008
+#define IDC_COMBO2                      1009
+#define IDC_LIST1                       1011
 #define ID_VUELOS_REGISTRARVUELO        32771
 #define ID_VUELOS_ELIMINARVUELO         32772
 #define ID_VUELOS_MODIFICARVUELO        32773
@@ -46,9 +58,9 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
-#define _APS_NEXT_RESOURCE_VALUE        132
+#define _APS_NEXT_RESOURCE_VALUE        134
 #define _APS_NEXT_COMMAND_VALUE         32786
-#define _APS_NEXT_CONTROL_VALUE         1004
+#define _APS_NEXT_CONTROL_VALUE         1012
 #define _APS_NEXT_SYMED_VALUE           110
 #endif
 #endif

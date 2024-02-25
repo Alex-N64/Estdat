@@ -1,7 +1,7 @@
 #pragma once
 #include "Estdat.h"
 #include "misc.h"
-
+#include "vuelos.h"
 
 
 BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
@@ -12,17 +12,17 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 		{
 		//Vuelos
 		case ID_VUELOS_REGISTRARVUELO: {
-			
+			DialogBox(NULL, MAKEINTRESOURCE(IDD_VUELO_REGISTRO), handler, (DLGPROC)REGISTRARVUELO);
 			return 0;
 		}
 
 		case ID_VUELOS_ELIMINARVUELO: {
-
+			DialogBox(NULL, MAKEINTRESOURCE(IDD_VUELO_ELIMINAR), handler, (DLGPROC)ELIMINARVUELO);
 			return 0;
 		}
 
 		case ID_VUELOS_MODIFICARVUELO: {
-
+			DialogBox(NULL, MAKEINTRESOURCE(IDD_VUELO_MODIFICAR), handler, (DLGPROC)MODIFICARVUELO);
 			return 0;
 		}
 
@@ -75,7 +75,7 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 
 	case WM_CLOSE: {
 
-		if (MessageBox(handler, L"¿Desea salir de la aplicación?. Los cambios serán guardados.", L"My application", MB_OKCANCEL) == IDOK)
+		if (MessageBox(handler, L"¿Desea salir de la aplicación? Se guardarán los cambios realizados.", L"My application", MB_OKCANCEL) == IDOK)
 		{
 			DestroyWindow(handler);
 		}

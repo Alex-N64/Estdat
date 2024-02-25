@@ -127,12 +127,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="boletos.h" />
     <ClInclude Include="Estdat.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="misc.h" />
+    <ClInclude Include="pasajeros.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="vuelos.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Estdat.cpp" />
