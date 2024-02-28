@@ -2,6 +2,7 @@
 #include "Estdat.h"
 #include "misc.h"
 #include "vuelos.h"
+#include "pasajeros.h"
 
 
 BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
@@ -28,15 +29,15 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 
 		//Pasajero
 		case ID_PASAJEROS_REGISTRARPASAJEROS: {
-
+			DialogBox(NULL, MAKEINTRESOURCE(IDD_PASAJEROS_REGISTRO), handler, (DLGPROC)REGISTRARPASAJEROS);
 			return 0;
 		}
 		case ID_PASAJEROS_ELIMINARPASAJEROS: {
-
+			DialogBox(NULL, MAKEINTRESOURCE(IDD_PASAJEROS_ELIMINAR), handler, (DLGPROC)ELIMINARPASAJEROS);
 			return 0;
 		}
 		case ID_PASAJEROS_MODIFICARPASAJEROS: {
-
+			DialogBox(NULL, MAKEINTRESOURCE(IDD_PASAJEROS_MODIFICAR), handler, (DLGPROC)MODIFICARPASAJEROS);
 			return 0;
 		}
 		//Boletos

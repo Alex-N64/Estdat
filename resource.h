@@ -22,8 +22,10 @@
 #define IDD_DIALOG2                     136
 #define IDD_MISC_                       136
 #define IDD_VUELO_MODIFICAR             137
-#define IDD_VUELOS_ELIMINAR             138
 #define IDD_VUELO_ELIMINAR              138
+#define IDD_PASAJEROS_ELIMINAR          139
+#define IDD_DIALOG4                     140
+#define IDD_PASAJEROS_MODIFICAR         140
 #define ID_iniciarSesion                1000
 #define IDC_EDIT1                       1002
 #define IDD_crearUsuario                1003
@@ -31,7 +33,9 @@
 #define IDC_EDIT2                       1004
 #define IDC_DATETIMEPICKER1             1004
 #define IDC_DATETIMEPICKER2             1005
+#define IDC_EDIT6                       1005
 #define IDC_EDIT4                       1006
+#define IDC_EDIT7                       1006
 #define IDC_COMBO1                      1007
 #define IDC_EDIT5                       1008
 #define IDC_COMBO2                      1009
