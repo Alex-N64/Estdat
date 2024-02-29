@@ -58,11 +58,11 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 		}
 		//Mas opciones
 		case ID_MISC_PASEDEABORDAR: {
-
+			DialogBox(NULL, MAKEINTRESOURCE(IDD_PASE_ABORDAR), handler, (DLGPROC)PASEABORDAR);
 			return 0;
 		}
 		case ID_ADMIN_REGISTRARUSUARIOS: {
-
+			DialogBox(NULL, MAKEINTRESOURCE(IDD_USUARIO), handler, (DLGPROC)REGISTRARUSUARIOS);
 			return 0;
 		}
 		case IDM_ABOUT: {
