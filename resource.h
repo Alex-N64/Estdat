@@ -31,6 +31,9 @@
 #define IDD_BOLETOS_MODIFICAR           142
 #define IDD_USUARIO                     143
 #define IDD_PASE_ABORDAR                144
+#define IDD_MANIFIESTO_NUMERO           145
+#define IDD_MANIFIESTO_NOMBRE           146
+#define IDD_MANIFIESTO_APELLIDO         147
 #define ID_iniciarSesion                1000
 #define IDC_EDIT1                       1002
 #define IDD_crearUsuario                1003
@@ -47,6 +50,7 @@
 #define IDC_EDIT9                       1007
 #define IDC_EDIT5                       1008
 #define IDC_COMBO2                      1009
+#define IDC_DATETIMEPICKER5             1010
 #define IDC_LIST1                       1011
 #define IDC_DATETIMEPICKER4             1013
 #define ID_VUELOS_REGISTRARVUELO        32771
@@ -64,6 +68,16 @@
 #define ID_M                            32783
 #define ID_MISC_PASEDEABORDAR           32784
 #define ID_ADMIN_REGISTRARUSUARIOS      32785
+#define ID_M32786                       32786
+#define ID_MANIFIESTO_ORDENAR           32787
+#define ID_MANIFIESTO_ORDENARPORN32788  32788
+#define ID_M32789                       32789
+#define ID_VERMANIFIESTO_VERPORN32790   32790
+#define ID_VERMANIFIESTO_VERPORNOMBRE   32791
+#define ID_VERMANIFIESTO_VERPORAPELLIDO 32792
+#define ID_VERMANIFIESTO_VERPORNUMERO   32793
+#define ID_VERMANIFIESTO_VERPORNUMERODEASIENTP 32794
+#define ID_VERMANIFIESTO_VERPORNUMERODEASIENTO 32795
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
@@ -72,7 +86,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        134
-#define _APS_NEXT_COMMAND_VALUE         32786
+#define _APS_NEXT_COMMAND_VALUE         32796
 #define _APS_NEXT_CONTROL_VALUE         1014
 #define _APS_NEXT_SYMED_VALUE           110
 #endif

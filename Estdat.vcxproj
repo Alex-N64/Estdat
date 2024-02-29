@@ -130,6 +130,7 @@
     <ClInclude Include="boletos.h" />
     <ClInclude Include="Estdat.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="manifiesto.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="misc.h" />
     <ClInclude Include="pasajeros.h" />

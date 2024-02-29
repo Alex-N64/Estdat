@@ -4,6 +4,7 @@
 #include "vuelos.h"
 #include "pasajeros.h"
 #include "boletos.h"
+#include "manifiesto.h"
 
 
 
@@ -56,6 +57,20 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 			DialogBox(NULL, MAKEINTRESOURCE(IDD_PASAJEROS_MODIFICAR), handler, (DLGPROC)MODIFICARBOLETOS);
 			return 0;
 		}
+		//Manifiesto
+		case ID_VERMANIFIESTO_VERPORNUMERODEASIENTO: {
+			DialogBox(NULL, MAKEINTRESOURCE(IDD_MANIFIESTO_NUMERO), handler, (DLGPROC)VERPORNUMERODEASIENTO);
+			return 0;
+		}
+		case ID_VERMANIFIESTO_VERPORNOMBRE: {
+			DialogBox(NULL, MAKEINTRESOURCE(IDD_MANIFIESTO_NOMBRE), handler, (DLGPROC)VERPORNOMBRE);
+			return 0;
+		}
+		case ID_VERMANIFIESTO_VERPORAPELLIDO: {
+			DialogBox(NULL, MAKEINTRESOURCE(IDD_MANIFIESTO_APELLIDO), handler, (DLGPROC)VERPORAPELLIDO);
+			return 0;
+		}
+
 		//Mas opciones
 		case ID_MISC_PASEDEABORDAR: {
 			DialogBox(NULL, MAKEINTRESOURCE(IDD_PASE_ABORDAR), handler, (DLGPROC)PASEABORDAR);
