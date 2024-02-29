@@ -1,6 +1,9 @@
 #pragma once
 
 #include"menu.h"
+#include <shellapi.h>
+
+
 
 BOOL CALLBACK ABOUTBOX(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 	switch (mensaje)
@@ -11,6 +14,9 @@ BOOL CALLBACK ABOUTBOX(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam)
 		case IDOK: {
 			EndDialog(handler, 0);
 			return 0;
+		}
+		case REPOSITORIO: {
+			ShellExecuteA(NULL, "open", "https://github.com/Alex-N64/Estdat.git", NULL, NULL, SW_SHOW);
 		}
 
 		default:

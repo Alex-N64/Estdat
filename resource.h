@@ -3,6 +3,7 @@
 // Usado por Estdat.rc
 //
 #define IDC_MYICON                      2
+#define REPOSITORIO                     2
 #define IDD_ESTDAT_DIALOG               102
 #define IDS_APP_TITLE                   103
 #define IDD_ABOUTBOX                    103
@@ -24,8 +25,10 @@
 #define IDD_VUELO_MODIFICAR             137
 #define IDD_VUELO_ELIMINAR              138
 #define IDD_PASAJEROS_ELIMINAR          139
-#define IDD_DIALOG4                     140
 #define IDD_PASAJEROS_MODIFICAR         140
+#define IDD_BOLETOS_ELIMINAR            141
+#define IDD_PASAJEROS_MODIFICAR1        142
+#define IDD_BOLETOS_MODIFICAR           142
 #define ID_iniciarSesion                1000
 #define IDC_EDIT1                       1002
 #define IDD_crearUsuario                1003

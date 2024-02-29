@@ -3,6 +3,8 @@
 #include "misc.h"
 #include "vuelos.h"
 #include "pasajeros.h"
+#include "boletos.h"
+
 
 
 BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
@@ -43,15 +45,15 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 		//Boletos
 
 		case ID_BOLETOS_COMPRARBOLETOS: {
-
+			DialogBox(NULL, MAKEINTRESOURCE(IDD_BOLETOS_REGISTRO), handler, (DLGPROC)COMPRARBOLETOS);
 			return 0;
 		}
 		case ID_BOLETOS_CANCELARBOLETOS: {
-
+			DialogBox(NULL, MAKEINTRESOURCE(IDD_BOLETOS_ELIMINAR), handler, (DLGPROC)CANCELARBOLETOS);
 			return 0;
 		}
 		case ID_BOLETOS_MODIFICARBOLETOS: {
-
+			DialogBox(NULL, MAKEINTRESOURCE(IDD_PASAJEROS_MODIFICAR), handler, (DLGPROC)MODIFICARBOLETOS);
 			return 0;
 		}
 		//Mas opciones
