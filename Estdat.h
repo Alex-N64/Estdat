@@ -8,3 +8,15 @@
 #include <shellapi.h>
 #include <string>
 #include <fstream>
+
+using namespace std;
+
+bool adminStatus;
+
+string rutaUsuario = "Estdat/users/";
+
+
+
+//::::: ZONA DE CONFIGURACION :::::
+bool loginStatus = true;
+

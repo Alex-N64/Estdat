@@ -77,11 +77,27 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 			return 0;
 		}
 		case ID_ADMIN_REGISTRARUSUARIOS: {
-			DialogBox(NULL, MAKEINTRESOURCE(IDD_USUARIO), handler, (DLGPROC)REGISTRARUSUARIOS);
-			return 0;
+			if (!adminStatus) {
+				MessageBox(handler, L"Se necesitan permisos de administrador para poder agregar nuevos usuarios", L"Admin", MB_ICONEXCLAMATION);
+				return 0;
+			}
+
+			else {
+				DialogBox(NULL, MAKEINTRESOURCE(IDD_USUARIO), handler, (DLGPROC)REGISTRARUSUARIOS);
+				return 0;
+			}
 		}
 		case IDM_ABOUT: {
 			DialogBox(NULL, MAKEINTRESOURCE(IDD_ABOUTBOX), handler, (DLGPROC)ABOUTBOX);
+			return 0;
+		}
+
+		case ID_SALIR_NOGURDAR: {
+			if (MessageBox(handler, L"Advertencia: Los cambios realizados no se guardarán. ¿Está seguro de que desea salir?", L"Advertencia", MB_OKCANCEL) == IDOK)
+			{
+				DestroyWindow(handler);
+				return 0;
+			}
 			return 0;
 		}
 
@@ -93,15 +109,16 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 
 	case WM_CLOSE: {
 
-		if (MessageBox(handler, L"¿Desea salir de la aplicación? Se guardarán los cambios realizados.", L"My application", MB_OKCANCEL) == IDOK)
+		if (MessageBox(handler, L"¿Desea salir de la aplicación? Los cambios realizados se guardarán.", L"Cerrando programa", MB_OKCANCEL) == IDOK)
 		{
 			DestroyWindow(handler);
+			return 0;
 		}
 		return 0;
 	}
 
 	case WM_DESTROY: {
-		PostQuitMessage(0);
+		//PostQuitMessage(0);
 		return 0;
 	}
 

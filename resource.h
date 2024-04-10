@@ -41,6 +41,7 @@
 #define IDC_EDIT2                       1004
 #define IDC_DATETIMEPICKER1             1004
 #define IDC_EDIT8                       1004
+#define IDC_CONTRASENA                  1004
 #define IDC_DATETIMEPICKER2             1005
 #define IDC_EDIT6                       1005
 #define IDC_EDIT4                       1006
@@ -53,6 +54,10 @@
 #define IDC_DATETIMEPICKER5             1010
 #define IDC_LIST1                       1011
 #define IDC_DATETIMEPICKER4             1013
+#define IDC_USUARIO                     1014
+#define IDC_CORREO                      1015
+#define IDC_NOMBRE                      1016
+#define IDC_GENERO                      1017
 #define ID_VUELOS_REGISTRARVUELO        32771
 #define ID_VUELOS_ELIMINARVUELO         32772
 #define ID_VUELOS_MODIFICARVUELO        32773
@@ -78,6 +83,8 @@
 #define ID_VERMANIFIESTO_VERPORNUMERO   32793
 #define ID_VERMANIFIESTO_VERPORNUMERODEASIENTP 32794
 #define ID_VERMANIFIESTO_VERPORNUMERODEASIENTO 32795
+#define ID_M32796                       32796
+#define ID_SALIR_NOGURDAR               32797
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
@@ -86,8 +93,8 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        134
-#define _APS_NEXT_COMMAND_VALUE         32796
-#define _APS_NEXT_CONTROL_VALUE         1014
+#define _APS_NEXT_COMMAND_VALUE         32798
+#define _APS_NEXT_CONTROL_VALUE         1018
 #define _APS_NEXT_SYMED_VALUE           110
 #endif
 #endif
