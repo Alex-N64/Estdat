@@ -111,8 +111,21 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 
 		if (MessageBox(handler, L"¿Desea salir de la aplicación? Los cambios realizados se guardarán.", L"Cerrando programa", MB_OKCANCEL) == IDOK)
 		{
-			DestroyWindow(handler);
-			return 0;
+			if (!saveOnExit) {
+				MessageBox(handler, L"No", L"No", MB_OK);
+				DestroyWindow(handler);
+				return 0;
+
+			}
+
+			else {
+				MessageBox(handler, L"Guardar", L"Guardar", MB_OK);
+				DestroyWindow(handler);
+				return 0;
+			}
+
+			//DestroyWindow(handler);
+			//return 0;
 		}
 		return 0;
 	}

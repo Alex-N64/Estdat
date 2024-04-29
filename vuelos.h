@@ -2,20 +2,22 @@
 
 struct Vuelos
 {
-	wchar_t NombrePaciente[200];
-	wchar_t Genero[200];
-	wchar_t TelefonoPaciente[200];
-	wchar_t Referencia[400];
-	wchar_t FechaNacimientoPaciente[200];
-	wchar_t EdadPaciente[200];
-	wchar_t Medico[200];
+	wchar_t vueloOrigen[200];
+	wchar_t vueloDestino[200];
+	wchar_t vueloFechaSalida[200];
+	wchar_t vueloFechaEntrada[200];
+	wchar_t vueloHora[200];
+	wchar_t vueloNumero[200];
+	wchar_t vueloTipoAvion[200];
+	wchar_t vueloCantidadAsientos[200];
+	wchar_t vueloClase[200];
 
-	Vuelos* Vuelos_siguiente;
-	Vuelos* Vuelos_anterior;
+	Vuelos* vuelosSiguiente;
+	Vuelos* vuelosAnterior;
 };
 
-Vuelos* Vuelos_inicio = NULL;
-Vuelos* Vuelos_actual = NULL;
+Vuelos* vuelosInicio = NULL;
+Vuelos* vuelosActual = NULL;
 
 void swap(Vuelos* a, Vuelos* b) {
 	Vuelos temp = *a;
@@ -28,7 +30,7 @@ int partition(Vuelos* arr, int low, int high) {
 	int i = low - 1;
 
 	for (int j = low; j <= high - 1; j++) {
-		if (wcscmp(arr[j].NombrePaciente, pivot.NombrePaciente) < 0) {
+		if (wcscmp(arr[j].vueloOrigen, pivot.vueloOrigen) < 0) {
 			i++;
 			swap(&arr[i], &arr[j]);
 		}
@@ -51,10 +53,10 @@ void heapify(Vuelos* arr, int n, int i) {
 	int l = 2 * i + 1;
 	int r = 2 * i + 2;
 
-	if (l < n && wcscmp(arr[l].NombrePaciente, arr[largest].NombrePaciente) > 0)
+	if (l < n && wcscmp(arr[l].vueloOrigen, arr[largest].vueloOrigen) > 0)
 		largest = l;
 
-	if (r < n && wcscmp(arr[r].NombrePaciente, arr[largest].NombrePaciente) > 0)
+	if (r < n && wcscmp(arr[r].vueloOrigen, arr[largest].vueloOrigen) > 0)
 		largest = r;
 
 	if (largest != i) {
@@ -63,104 +65,104 @@ void heapify(Vuelos* arr, int n, int i) {
 	}
 }
 
-void Vuelos_agregar(Vuelos* Vuelos_nuevo) {
-	if (Vuelos_inicio == NULL) {
-		Vuelos_inicio = Vuelos_nuevo;
-		Vuelos_nuevo->Vuelos_siguiente = Vuelos_nuevo;
-		Vuelos_nuevo->Vuelos_anterior = Vuelos_nuevo;
+void vuelosAgregar(Vuelos* vuelosNuevo) {
+	if (vuelosInicio == NULL) {
+		vuelosInicio = vuelosNuevo;
+		vuelosNuevo->vuelosSiguiente = vuelosNuevo;
+		vuelosNuevo->vuelosAnterior = vuelosNuevo;
 	}
 	else {
-		Vuelos_inicio->Vuelos_anterior->Vuelos_siguiente = Vuelos_nuevo;
-		Vuelos_nuevo->Vuelos_anterior = Vuelos_inicio->Vuelos_anterior;
-		Vuelos_nuevo->Vuelos_siguiente = Vuelos_inicio;
-		Vuelos_inicio->Vuelos_anterior = Vuelos_nuevo;
+		vuelosInicio->vuelosAnterior->vuelosSiguiente = vuelosNuevo;
+		vuelosNuevo->vuelosAnterior = vuelosInicio->vuelosAnterior;
+		vuelosNuevo->vuelosSiguiente = vuelosInicio;
+		vuelosInicio->vuelosAnterior = vuelosNuevo;
 	}
 }
 
-void Vuelos_eliminar(Vuelos* Vuelos_aEliminar) {
+void vuelosEliminar(Vuelos* vuelosAEliminar) {
 
-	Vuelos* Vuelos_anterior = Vuelos_aEliminar->Vuelos_anterior;
-	Vuelos* Vuelos_siguiente = Vuelos_aEliminar->Vuelos_siguiente;
-	if (Vuelos_anterior == Vuelos_siguiente && Vuelos_aEliminar == Vuelos_anterior) {
-		delete Vuelos_aEliminar;
-		Vuelos_inicio = NULL;
+	Vuelos* vuelosAnterior = vuelosAEliminar->vuelosAnterior;
+	Vuelos* vuelosSiguiente = vuelosAEliminar->vuelosSiguiente;
+	if (vuelosAnterior == vuelosSiguiente && vuelosAEliminar == vuelosAnterior) {
+		delete vuelosAEliminar;
+		vuelosInicio = NULL;
 		return;
 	}
-	if (Vuelos_anterior->Vuelos_siguiente == Vuelos_inicio) {
-		Vuelos_inicio = Vuelos_inicio->Vuelos_siguiente;
+	if (vuelosAnterior->vuelosSiguiente == vuelosInicio) {
+		vuelosInicio = vuelosInicio->vuelosSiguiente;
 	}
-	Vuelos_anterior->Vuelos_siguiente = Vuelos_siguiente;
-	Vuelos_siguiente->Vuelos_anterior = Vuelos_anterior;
-	delete Vuelos_aEliminar;
+	vuelosAnterior->vuelosSiguiente = vuelosSiguiente;
+	vuelosSiguiente->vuelosAnterior = vuelosAnterior;
+	delete vuelosAEliminar;
 }
 
 void Vuelos_ActualizarLista(HWND handler) {
 	//SendDlgItemMessage(handler, IDC_LIST_PACIENTES, LB_RESETCONTENT, NULL, NULL);         <------- Descomentame
-	if (Vuelos_inicio == NULL) return;
+	if (vuelosInicio == NULL) return;
 
-	Vuelos* Vuelos_aux = Vuelos_inicio;
+	Vuelos* vuelosAux = vuelosInicio;
 	int totalVuelos = 0;
 
-	while (Vuelos_aux->Vuelos_siguiente != Vuelos_inicio) {
+	while (vuelosAux->vuelosSiguiente != vuelosInicio) {
 		totalVuelos++;
-		Vuelos_aux = Vuelos_aux->Vuelos_siguiente;
+		vuelosAux = vuelosAux->vuelosSiguiente;
 	}
 
-	Vuelos* VuelosArray = new Vuelos[totalVuelos + 1];
+	Vuelos* vuelosArray = new Vuelos[totalVuelos + 1];
 
-	Vuelos_aux = Vuelos_inicio;
+	vuelosAux = vuelosInicio;
 	for (int i = 0; i <= totalVuelos; i++) {
-		VuelosArray[i] = *Vuelos_aux;
-		Vuelos_aux = Vuelos_aux->Vuelos_siguiente;
+		vuelosArray[i] = *vuelosAux;
+		vuelosAux = vuelosAux->vuelosSiguiente;
 	}
 
-	quickSort(VuelosArray, 0, totalVuelos);
+	quickSort(vuelosArray, 0, totalVuelos);
 
 	for (int i = 0; i <= totalVuelos; i++) {
-		/*
-		SendDlgItemMessage(handler, IDC_NombrePaciente, LB_ADDSTRING, NULL, (LPARAM)PacientesArray[i].NombrePaciente);
-		SendDlgItemMessage(handler, IDC_Genero, LB_ADDSTRING, NULL, (LPARAM)PacientesArray[i].Genero);
-		SendDlgItemMessage(handler, IDC_TelefonoPaciente, LB_ADDSTRING, NULL, (LPARAM)PacientesArray[i].TelefonoPaciente);
-		SendDlgItemMessage(handler, IDC_Referencia, LB_ADDSTRING, NULL, (LPARAM)PacientesArray[i].Referencia);
-		SendDlgItemMessage(handler, IDC_FechaNacimientoPaciente, LB_ADDSTRING, NULL, (LPARAM)PacientesArray[i].FechaNacimientoPaciente);
-		SendDlgItemMessage(handler, IDC_EdadPaciente, LB_ADDSTRING, NULL, (LPARAM)PacientesArray[i].EdadPaciente);
-		SendDlgItemMessage(handler, IDC_Medico, LB_ADDSTRING, NULL, (LPARAM)PacientesArray[i].Medico);
-		*/
-
+		
+		SendDlgItemMessage(handler, IDC_vueloOrigen, LB_ADDSTRING, NULL, (LPARAM)PacientesArray[i].NombrePaciente);
+		SendDlgItemMessage(handler, IDC_vueloDestino, LB_ADDSTRING, NULL, (LPARAM)PacientesArray[i].Genero);
+		//SendDlgItemMessage(handler, IDC_fechaSalida, LB_ADDSTRING, NULL, (LPARAM)PacientesArray[i].TelefonoPaciente);
+		//SendDlgItemMessage(handler, IDC_fechaLlegada, LB_ADDSTRING, NULL, (LPARAM)PacientesArray[i].Referencia);
+		SendDlgItemMessage(handler, , LB_ADDSTRING, NULL, (LPARAM)PacientesArray[i].FechaNacimientoPaciente);
+		SendDlgItemMessage(handler, , LB_ADDSTRING, NULL, (LPARAM)PacientesArray[i].EdadPaciente);
+		SendDlgItemMessage(handler, , LB_ADDSTRING, NULL, (LPARAM)PacientesArray[i].Medico);
+		SendDlgItemMessage(handler, , LB_ADDSTRING, NULL, (LPARAM)PacientesArray[i].Medico);
+		SendDlgItemMessage(handler, , LB_ADDSTRING, NULL, (LPARAM)PacientesArray[i].Medico);
 
 	}
 
-	delete[] VuelosArray;
+	delete[] vuelosArray;
 
-	while (Vuelos_aux->Vuelos_siguiente != Vuelos_inicio) {
+	while (vuelosAux->vuelosSiguiente != vuelosInicio) {
 	//	SendDlgItemMessage(handler, IDC_LIST_PACIENTES, LB_ADDSTRING, NULL, (LPARAM)Vuelos_aux->NombrePaciente);         <------- Descomentame
-		Vuelos_aux = Vuelos_aux->Vuelos_siguiente;
+		vuelosAux = vuelosAux->vuelosSiguiente;
 	}
 //	SendDlgItemMessage(handler, IDC_LIST_PACIENTES, LB_ADDSTRING, NULL, (LPARAM)Vuelos_aux->NombrePaciente);         <------- Descomentame
 
 }
 
-void Vuelos_limpiar() {
+void vuelosLimpiar() {
 
-	if (Vuelos_inicio != NULL) {
-		Vuelos* Vuelos_aux = Vuelos_inicio;
-		while (Vuelos_aux->Vuelos_siguiente != Vuelos_inicio) {
-			Vuelos_aux = Vuelos_aux->Vuelos_siguiente;
-			delete Vuelos_aux->Vuelos_anterior;
+	if (vuelosInicio != NULL) {
+		Vuelos* vuelosAux = vuelosInicio;
+		while (vuelosAux->vuelosSiguiente != vuelosInicio) {
+			vuelosAux = vuelosAux->vuelosSiguiente;
+			delete vuelosAux->vuelosAnterior;
 		}
-		delete Vuelos_aux;
+		delete vuelosAux;
 	}
-	Vuelos_inicio = NULL;
-	Vuelos_actual = NULL;
+	vuelosInicio = NULL;
+	vuelosActual = NULL;
 
 }
 
-Vuelos* buscar(int i) {
-	Vuelos* Vuelos_aux = Vuelos_inicio;
+Vuelos* vuelosBuscar(int i) {
+	Vuelos* vuelosAux = vuelosInicio;
 	for (int j = 0; j < i; j++) {
-		Vuelos_aux = Vuelos_aux->Vuelos_siguiente;
+		vuelosAux = vuelosAux->vuelosSiguiente;
 	}
-	return Vuelos_aux;
+	return vuelosAux;
 }
 
 

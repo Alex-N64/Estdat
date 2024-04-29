@@ -1,35 +1,36 @@
 ﻿  Estdat.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(4537,18): warning C4244: '=': conversión de 'wchar_t' a 'char'; posible pérdida de datos
+C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\vuelos.h(123,76): error C2065: 'PacientesArray': identificador no declarado
   (compilando archivo de origen "Estdat.cpp")
-  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(4537,18):
-  el contexto de creación de instancias de la plantilla (el más antiguo primero) es
-  	C:\Users\alexi\Documents\Programacion Fcfm\Estdat\misc.h(72,18):
-  	Vea la referencia a la creación de una instancia de la función plantilla "std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)" que se está compilando
-          with
-          [
-              _Elem=wchar_t,
-              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
-              _Alloc=std::allocator<char>
-          ]
-  		C:\Users\alexi\Documents\Programacion Fcfm\Estdat\misc.h(72,18):
-  		vea la primera referencia a “std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string” en “REGISTRARUSUARIOS”
-  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xstring(2600,17):
-  	Vea la referencia a la creación de una instancia de la función plantilla "void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<wchar_t*,wchar_t*,_Size_type>(_Iter,const _Sent,_Size)" que se está compilando
-          with
-          [
-              _Size_type=unsigned __int64,
-              _Iter=wchar_t *,
-              _Sent=wchar_t *,
-              _Size=unsigned __int64
-          ]
-  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xstring(2756,18):
-  	Vea la referencia a la creación de una instancia de la función plantilla "_OutIt *std::_Copy_n_unchecked4<wchar_t*,_Size,char*>(_InIt,_SizeTy,_OutIt)" que se está compilando
-          with
-          [
-              _OutIt=char *,
-              _Size=unsigned __int64,
-              _InIt=wchar_t *,
-              _SizeTy=unsigned __int64
-          ]
   
-  Estdat.vcxproj -> C:\Users\alexi\Documents\Programacion Fcfm\Estdat\x64\Debug\Estdat.exe
+C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\vuelos.h(123,3): error C2660: 'SendDlgItemMessageW': la función no acepta 4 argumentos
+  (compilando archivo de origen "Estdat.cpp")
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\winuser.h(5238,1):
+  vea la declaración de 'SendDlgItemMessageW'
+  C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\vuelos.h(123,3):
+  al hacer coincidir la lista de argumentos '(HWND, int, int, int)'
+  
+C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\vuelos.h(124,77): error C2065: 'PacientesArray': identificador no declarado
+  (compilando archivo de origen "Estdat.cpp")
+  
+C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\vuelos.h(124,3): error C2660: 'SendDlgItemMessageW': la función no acepta 4 argumentos
+  (compilando archivo de origen "Estdat.cpp")
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\winuser.h(5238,1):
+  vea la declaración de 'SendDlgItemMessageW'
+  C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\vuelos.h(124,3):
+  al hacer coincidir la lista de argumentos '(HWND, int, int, int)'
+  
+C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\vuelos.h(127,31): error C2059: error de sintaxis: ','
+  (compilando archivo de origen "Estdat.cpp")
+  
+C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\vuelos.h(128,31): error C2059: error de sintaxis: ','
+  (compilando archivo de origen "Estdat.cpp")
+  
+C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\vuelos.h(129,31): error C2059: error de sintaxis: ','
+  (compilando archivo de origen "Estdat.cpp")
+  
+C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\vuelos.h(130,31): error C2059: error de sintaxis: ','
+  (compilando archivo de origen "Estdat.cpp")
+  
+C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\vuelos.h(131,31): error C2059: error de sintaxis: ','
+  (compilando archivo de origen "Estdat.cpp")
+  

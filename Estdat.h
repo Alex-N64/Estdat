@@ -11,12 +11,12 @@
 
 using namespace std;
 
+//::::: ZONA DE OPCIONES :::::
+bool loginStatus = false;
+bool saveOnExit = true;
+
+//::::::::::::::::::::::::::::
+
 bool adminStatus;
 
 string rutaUsuario = "Estdat/users/";
-
-
-
-//::::: ZONA DE CONFIGURACION :::::
-bool loginStatus = true;
-
