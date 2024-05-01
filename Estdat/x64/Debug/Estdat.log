@@ -1,36 +1,4 @@
 ﻿  Estdat.cpp
-C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\vuelos.h(123,76): error C2065: 'PacientesArray': identificador no declarado
-  (compilando archivo de origen "Estdat.cpp")
-  
-C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\vuelos.h(123,3): error C2660: 'SendDlgItemMessageW': la función no acepta 4 argumentos
-  (compilando archivo de origen "Estdat.cpp")
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\winuser.h(5238,1):
-  vea la declaración de 'SendDlgItemMessageW'
-  C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\vuelos.h(123,3):
-  al hacer coincidir la lista de argumentos '(HWND, int, int, int)'
-  
-C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\vuelos.h(124,77): error C2065: 'PacientesArray': identificador no declarado
-  (compilando archivo de origen "Estdat.cpp")
-  
-C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\vuelos.h(124,3): error C2660: 'SendDlgItemMessageW': la función no acepta 4 argumentos
-  (compilando archivo de origen "Estdat.cpp")
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\winuser.h(5238,1):
-  vea la declaración de 'SendDlgItemMessageW'
-  C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\vuelos.h(124,3):
-  al hacer coincidir la lista de argumentos '(HWND, int, int, int)'
-  
-C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\vuelos.h(127,31): error C2059: error de sintaxis: ','
-  (compilando archivo de origen "Estdat.cpp")
-  
-C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\vuelos.h(128,31): error C2059: error de sintaxis: ','
-  (compilando archivo de origen "Estdat.cpp")
-  
-C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\vuelos.h(129,31): error C2059: error de sintaxis: ','
-  (compilando archivo de origen "Estdat.cpp")
-  
-C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\vuelos.h(130,31): error C2059: error de sintaxis: ','
-  (compilando archivo de origen "Estdat.cpp")
-  
-C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\vuelos.h(131,31): error C2059: error de sintaxis: ','
+D:\ProgramacionFCFM\Estdat\vuelos.h(195,19): error C2065: 'b': identificador no declarado
   (compilando archivo de origen "Estdat.cpp")
   

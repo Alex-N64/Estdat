@@ -11,6 +11,11 @@
 BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 	switch (mensaje)
 	{
+	case WM_INITDIALOG: {
+		Vuelos_ActualizarLista(handler);
+
+	}
+
 	case WM_COMMAND: {
 		switch (LOWORD(wParam))
 		{
