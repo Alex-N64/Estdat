@@ -52,36 +52,6 @@ BOOL CALLBACK REGISTRARUSUARIOS(HWND handler, UINT mensaje, WPARAM wParam, LPARA
 		}
 
 		case IDOK: {
-			wchar_t usuarioWchart[256], correoWchart[256], contrasenaWchart[256],nombreWchart[256], generoWchart[256];
-
-			SendMessage(GetDlgItem(handler, IDC_USUARIO), WM_GETTEXT, sizeof(usuarioWchart) / sizeof(usuarioWchart[0]), (LPARAM)usuarioWchart);
-			SendMessage(GetDlgItem(handler, IDC_CORREO), WM_GETTEXT, sizeof(correoWchart) / sizeof(correoWchart[0]), (LPARAM)correoWchart);
-			SendMessage(GetDlgItem(handler, IDC_CONTRASENA), WM_GETTEXT, sizeof(contrasenaWchart) / sizeof(contrasenaWchart[0]), (LPARAM)contrasenaWchart);
-			SendMessage(GetDlgItem(handler, IDC_NOMBRE), WM_GETTEXT, sizeof(nombreWchart) / sizeof(nombreWchart[0]), (LPARAM)nombreWchart);
-			SendMessage(GetDlgItem(handler, IDC_GENERO), WM_GETTEXT, sizeof(generoWchart) / sizeof(generoWchart[0]), (LPARAM)generoWchart);
-
-			wstring usuarioWstring(usuarioWchart);
-			wstring correoWstring(correoWchart);
-			wstring contrasenaWstring(contrasenaWchart);
-			wstring nombreWstring(nombreWchart);
-			wstring generoWstring(generoWchart);
-
-			string usuario(usuarioWstring.begin(), usuarioWstring.end());
-			string correo(correoWstring.begin(), correoWstring.end());
-			string contrasena(contrasenaWstring.begin(), contrasenaWstring.end());
-			string nombre(nombreWstring.begin(), nombreWstring.end());
-			string genero(generoWstring.begin(), generoWstring.end());
-
-			ofstream file;
-			file.open(rutaUsuario + usuario + ".txt");
-			file << usuario << endl;
-			file << correo << endl;
-			file << contrasena << endl;
-			file << nombre << endl;
-			file << genero << endl;
-			file.close();
-
-			MessageBox(handler, usuarioWchart, L"Usuario registrado correctamente", MB_ICONINFORMATION);
 			
 			return 0;
 		}

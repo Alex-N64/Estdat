@@ -1,9 +1,6 @@
 #include "Estdat.h"
 #include "menu.h"
 
-//MessageBox(handler, L"", L"", MB_OK);
-
-
 BOOL CALLBACK iniciarSeccion(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 	switch (mensaje)
 	{
@@ -11,59 +8,10 @@ BOOL CALLBACK iniciarSeccion(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 		switch (LOWORD(wParam))
 		{
 		case ID_iniciarSesion: {
-			if (!loginStatus) {
-				adminStatus = true;
-				EndDialog(handler, 0);
-				DialogBox(NULL, MAKEINTRESOURCE(IDD_Menu), NULL, (DLGPROC)menu);
-			}
+			EndDialog(handler, 0);
+			DialogBox(NULL, MAKEINTRESOURCE(IDD_Menu), NULL, (DLGPROC)menu);
+			return 0;
 
-			else
-			{
-				wchar_t usuarioWchart[256], contrasenaWchart[256];
-				string usuarioRead, contrasenaRead;
-
-				SendMessage(GetDlgItem(handler, IDC_USUARIO), WM_GETTEXT, sizeof(usuarioWchart) / sizeof(usuarioWchart[0]), (LPARAM)usuarioWchart);
-				SendMessage(GetDlgItem(handler, IDC_CONTRASENA), WM_GETTEXT, sizeof(contrasenaWchart) / sizeof(contrasenaWchart[0]), (LPARAM)contrasenaWchart);
-
-				wstring usuarioWstring(usuarioWchart);
-				wstring contrasenaWstring(contrasenaWchart);
-
-				string usuario(usuarioWstring.begin(), usuarioWstring.end());
-				string contrasena(contrasenaWstring.begin(), contrasenaWstring.end());
-
-				ifstream read(rutaUsuario + usuario + ".txt");
-				getline(read, usuarioRead);
-				getline(read, contrasenaRead);
-
-				if (usuarioRead == usuario && contrasenaRead == contrasena) {
-					if (usuarioRead == "" && contrasenaRead == "") {
-						MessageBox(handler, L"No ingreso los datos solicitados", L"Error", MB_ICONERROR);
-						return 0;
-					}
-
-					else if (usuarioRead == "admin" && contrasenaRead == "admin") {
-						adminStatus = true;
-						EndDialog(handler, 0);
-						MessageBox(handler, L"Permisos de administrador activados", L"Admin", MB_ICONINFORMATION);
-						DialogBox(NULL, MAKEINTRESOURCE(IDD_Menu), NULL, (DLGPROC)menu);
-						return 0;
-					}
-
-					else {
-						adminStatus = false;
-						EndDialog(handler, 0);
-						DialogBox(NULL, MAKEINTRESOURCE(IDD_Menu), NULL, (DLGPROC)menu);
-						return 0;
-					}
-
-				}
-
-				else {
-					MessageBox(handler, L"Usuario o contraseña incorrectos", L"Error", MB_ICONERROR);
-					return 0;
-				}
-			}
-			
 		}
 		default:
 			return 0;

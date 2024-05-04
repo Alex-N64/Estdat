@@ -6,7 +6,7 @@ struct Pasajeros
 	wchar_t apellidosPasajeros[200];
 	wchar_t generoPasajeros[200];
 	wchar_t nacionalidadPasajeros[200];
-//	wchar_t fechaNacimientoPasajeros[200];
+	wchar_t fechaNacimientoPasajeros[200];
 
 	Pasajeros* pasajerosSiguiente;
 	Pasajeros* pasajerosAnterior;
