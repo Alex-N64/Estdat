@@ -6,7 +6,8 @@ struct Vuelos
 	wchar_t vueloDestino[200];
 	wchar_t vueloFechaEntrada[200];
 	wchar_t vueloFechaSalida[200];
-	wchar_t vueloHora[200];
+	wchar_t vueloHoraSalida[200];
+	wchar_t vueloHoraLlegada[200];
 	wchar_t vueloID[200];
 	wchar_t vueloTipoAvion[200];
 	wchar_t vueloAsientos[200];
@@ -192,7 +193,7 @@ BOOL CALLBACK REGISTRARVUELO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 				vuelosAgregar(vuelosNuevo);
 				Vuelos_ActualizarLista(handler);
 
-				vuelosActual* b = vuelosBuscar(0);
+				Vuelos* b = vuelosBuscar(0);
 				int a = 0;
 				a++;
 
@@ -214,8 +215,8 @@ BOOL CALLBACK REGISTRARVUELO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 
 				EndDialog(handler, 0);
 			}
-			break;
-
+			
+			return 0;
 		}
 		case IDCANCEL: {
 			EndDialog(handler, 0);

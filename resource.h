@@ -16,7 +16,6 @@
 #define IDR_MAINFRAME                   128
 #define IDD_INICIO                      129
 #define IDD_Menu                        130
-#define IDD_DIALOG1                     131
 #define IDD_VUELO_REGISTRO              132
 #define IDD_DIALOG3                     133
 #define IDD_PASAJEROS_REGISTRO          134
@@ -54,6 +53,7 @@
 #define IDC_EDIT5                       1008
 #define IDC_COMBO2                      1009
 #define IDC_claseAvion                  1009
+#define IDC_EDIT10                      1009
 #define IDC_DATETIMEPICKER5             1010
 #define IDC_horaSalida                  1010
 #define IDC_LIST1                       1011

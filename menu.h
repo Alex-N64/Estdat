@@ -13,7 +13,7 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 	{
 	case WM_INITDIALOG: {
 		Vuelos_ActualizarLista(handler);
-
+		return 0;
 	}
 
 	case WM_COMMAND: {
@@ -97,16 +97,6 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 			return 0;
 		}
 
-		case ID_SALIR_NOGURDAR: {
-			if (MessageBox(handler, L"Advertencia: Los cambios realizados no se guardarán. ¿Está seguro de que desea salir?", L"Advertencia", MB_OKCANCEL) == IDOK)
-			{
-				DestroyWindow(handler);
-				return 0;
-			}
-			return 0;
-		}
-
-
 		default:
 			return 0;
 		}
@@ -117,14 +107,14 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 		if (MessageBox(handler, L"¿Desea salir de la aplicación? Los cambios realizados se guardarán.", L"Cerrando programa", MB_OKCANCEL) == IDOK)
 		{
 			if (!saveOnExit) {
-				MessageBox(handler, L"No", L"No", MB_OK);
+				//MessageBox(handler, L"No", L"No", MB_OK);
 				DestroyWindow(handler);
 				return 0;
 
 			}
 
 			else {
-				MessageBox(handler, L"Guardar", L"Guardar", MB_OK);
+				//MessageBox(handler, L"Guardar", L"Guardar", MB_OK);
 				DestroyWindow(handler);
 				return 0;
 			}

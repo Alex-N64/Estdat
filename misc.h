@@ -16,9 +16,6 @@ BOOL CALLBACK ABOUTBOX(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam)
 			EndDialog(handler, 0);
 			return 0;
 		}
-		case REPOSITORIO: {
-			ShellExecuteA(NULL, "open", "https://github.com/Alex-N64/Estdat.git", NULL, NULL, SW_SHOW);
-		}
 
 		default:
 			return 0;
