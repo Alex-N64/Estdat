@@ -65,6 +65,12 @@ BOOL CALLBACK iniciarSeccion(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 			}
 			
 		}
+
+		case ID_REPARAR_USUARIO: {
+			usuariosReparar(handler);
+			return 0;
+		}
+
 		default:
 			return 0;
 		}

@@ -92,6 +92,35 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 				return 0;
 			}
 		}
+
+		case ID_ADMIN_REINICIARIDSDEVUELOS: {
+			if (!adminStatus) {
+				MessageBox(handler, L"Se necesitan permisos de administrador para poder reiniciar los IDs de los vuelos", L"Admin", MB_ICONEXCLAMATION);
+				return 0;
+			}
+
+			else {
+				if (MessageBox(handler, L"Desea reiniciar los IDs de los vuelos?", L"Reparar", MB_OKCANCEL) == IDOK)
+				{
+					ofstream file;
+					file.open(rutaDatos + "idVuelos.bin");
+					file << "0" << endl;
+					file.close();
+					MessageBox(handler, L"Los IDs de los vuelos fueron reiniciados", L"Reparar", MB_OK);
+					return 0;
+				}
+
+				else
+				{
+					return 0;
+				}
+				return 0;
+			}
+
+			return 0;	
+			
+		}
+
 		case IDM_ABOUT: {
 			DialogBox(NULL, MAKEINTRESOURCE(IDD_ABOUTBOX), handler, (DLGPROC)ABOUTBOX);
 			return 0;

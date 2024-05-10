@@ -1,4 +1,6 @@
 #pragma once
+#include "Estdat.h"
+
 
 struct Vuelos
 {
@@ -19,6 +21,8 @@ struct Vuelos
 
 Vuelos* vuelosInicio = NULL;
 Vuelos* vuelosActual = NULL;
+
+
 
 void swap(Vuelos* a, Vuelos* b) {
 	Vuelos temp = *a;
@@ -172,6 +176,14 @@ Vuelos* vuelosBuscar(int i) {
 BOOL CALLBACK REGISTRARVUELO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 	switch (mensaje)
 	{
+	case WM_INITDIALOG: {
+		Vuelos_ActualizarLista(handler);
+
+
+
+		return 0;
+	}
+
 	case WM_COMMAND: {
 		switch (LOWORD(wParam))
 		{
