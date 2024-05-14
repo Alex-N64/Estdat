@@ -12,7 +12,7 @@
 using namespace std;
 
 //::::: ZONA DE OPCIONES :::::
-bool loginStatus = false;
+bool loginStatus = true;
 bool saveOnExit = true;
 
 //::::::::::::::::::::::::::::
@@ -21,20 +21,8 @@ bool adminStatus;
 
 string rutaUsuario = "Estdat/users/";
 string rutaDatos = "Estdat/data/";
+string rutaIdVuelo = "Estdat/data/idVuelos.bin";
+string rutaRecordarUsuario = "Estdat/data/recordarUsuario.bin";
 
-void usuariosReparar(HWND handler) {
-	if (MessageBox(handler, L"Desea reparar los usuarios?", L"Reparar", MB_OKCANCEL) == IDOK)
-	{
-		ofstream file;
-		file.open(rutaUsuario + "admin.txt");
-		file << "admin" << endl << "admin" << endl;
-		file.close();
-		MessageBox(handler, L"El usuario admin a sido recreado", L"Reparar", MB_OK);
-	}
+int vueloIdActual;
 
-	else
-	{
-		MessageBox(handler, L"false", L"false", MB_OK);
-	}
-
-}

@@ -102,7 +102,7 @@ void vuelosEliminar(Vuelos* vuelosAEliminar) {
 }
 
 void Vuelos_ActualizarLista(HWND handler) {
-	//SendDlgItemMessage(handler, IDC_LIST_PACIENTES, LB_RESETCONTENT, NULL, NULL);         <------- Descomentame
+	SendDlgItemMessage(handler, IDC_vuelos, LB_RESETCONTENT, NULL, NULL);
 	if (vuelosInicio == NULL) return;
 
 	Vuelos* vuelosAux = vuelosInicio;
@@ -177,6 +177,17 @@ BOOL CALLBACK REGISTRARVUELO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 	switch (mensaje)
 	{
 	case WM_INITDIALOG: {
+		string leerVariable;
+		HWND idTraducion = GetDlgItem(handler, IDC_idVuelo);
+
+		ifstream read(rutaIdVuelo);
+		getline(read, leerVariable);
+		vueloIdActual = stoi(leerVariable);
+
+
+		std::wstring text = std::to_wstring(vueloIdActual);
+		SetWindowText(idTraducion, text.c_str());
+
 		Vuelos_ActualizarLista(handler);
 
 
@@ -188,9 +199,11 @@ BOOL CALLBACK REGISTRARVUELO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 		switch (LOWORD(wParam))
 		{
 		case IDOK: {
+	
 			Vuelos* vuelosNuevo = NULL;
 			if (vuelosActual == NULL) {
 				vuelosNuevo = new Vuelos;
+
 				SendMessage(GetDlgItem(handler, IDC_vueloOrigen), WM_GETTEXT, sizeof(vuelosNuevo->vueloOrigen) / sizeof(vuelosNuevo->vueloOrigen[0]), (LPARAM)vuelosNuevo->vueloOrigen);
 				SendMessage(GetDlgItem(handler, IDC_vueloDestino), WM_GETTEXT, sizeof(vuelosNuevo->vueloDestino) / sizeof(vuelosNuevo->vueloDestino[0]), (LPARAM)vuelosNuevo->vueloDestino);
 				//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->) / sizeof(vuelosNuevo->[0]), (LPARAM)vuelosNuevo->);
@@ -204,6 +217,13 @@ BOOL CALLBACK REGISTRARVUELO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 
 				vuelosAgregar(vuelosNuevo);
 				Vuelos_ActualizarLista(handler);
+
+				vueloIdActual++;
+
+				ofstream file;
+				file.open(rutaIdVuelo);
+				file << vueloIdActual << endl;
+				file.close();
 
 				Vuelos* b = vuelosBuscar(0);
 				int a = 0;
@@ -259,9 +279,28 @@ BOOL CALLBACK REGISTRARVUELO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 BOOL CALLBACK ELIMINARVUELO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 	switch (mensaje)
 	{
+	case WM_INITDIALOG: {
+		Vuelos_ActualizarLista(handler);
+		return 0;
+	}
 	case WM_COMMAND: {
 		switch (LOWORD(wParam))
 		{
+		case IDOK:
+		{
+			int seleccionado = SendDlgItemMessage(handler, IDC_LIST_VUELO_ELIMINAR, LB_GETCURSEL, NULL, NULL);
+
+			if (seleccionado == -1) {
+				MessageBox(handler, L"No hay vuelos registrados", L"Error", MB_OK | MB_ICONERROR);
+				break;
+			}
+
+			vuelosActual = vuelosBuscar(seleccionado);
+			vuelosEliminar(vuelosActual);
+			Vuelos_ActualizarLista(handler);
+
+			return 0;
+		}
 
 		case IDCANCEL: {
 			EndDialog(handler, 0);
@@ -271,6 +310,7 @@ BOOL CALLBACK ELIMINARVUELO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lp
 		default:
 			return 0;
 		}
+		return 0;
 	}
 
 	case WM_CLOSE: {

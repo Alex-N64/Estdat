@@ -48,13 +48,16 @@
 #define IDC_EDIT4                       1006
 #define IDC_EDIT7                       1006
 #define IDC_DATETIMEPICKER3             1006
+#define IDC_FECHA_LLEGADA               1006
 #define IDC_COMBO1                      1007
 #define IDC_EDIT9                       1007
 #define IDC_tipoAvion                   1007
 #define IDC_EDIT5                       1008
+#define IDC_EDIT_HORA_SALIDA            1008
 #define IDC_COMBO2                      1009
 #define IDC_claseAvion                  1009
 #define IDC_EDIT10                      1009
+#define IDC_EDIT_HORA_LLEGADA           1009
 #define IDC_DATETIMEPICKER5             1010
 #define IDC_horaSalida                  1010
 #define IDC_LIST1                       1011
@@ -70,6 +73,11 @@
 #define IDC_asientosDisponibles         1021
 #define IDC_idVuelo                     1022
 #define IDC_vuelos                      1023
+#define IDC_CHECK_RECORDAR              1024
+#define IDC_LIST_VUELO_ELIMINAR         1025
+#define IDC_EDIT_VUELOS_ORIGEN          1026
+#define IDC_EDIT_VUELOS_DESTINO         1027
+#define IDC_FECHA_SALIDA                1028
 #define ID_VUELOS_REGISTRARVUELO        32771
 #define ID_VUELOS_ELIMINARVUELO         32772
 #define ID_VUELOS_MODIFICARVUELO        32773
@@ -114,7 +122,7 @@
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        135
 #define _APS_NEXT_COMMAND_VALUE         32806
-#define _APS_NEXT_CONTROL_VALUE         1024
+#define _APS_NEXT_CONTROL_VALUE         1029
 #define _APS_NEXT_SYMED_VALUE           110
 #endif
 #endif
