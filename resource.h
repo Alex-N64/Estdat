@@ -5,6 +5,7 @@
 #define IDC_MYICON                      2
 #define REPOSITORIO                     2
 #define IDD_SUBIR_IMAGEN                3
+#define IDCANCEL2                       3
 #define IDD_ESTDAT_DIALOG               102
 #define IDS_APP_TITLE                   103
 #define IDD_ABOUTBOX                    103
@@ -74,7 +75,6 @@
 #define IDC_idVuelo                     1022
 #define IDC_vuelos                      1023
 #define IDC_CHECK_RECORDAR              1024
-#define IDC_LIST_VUELO_ELIMINAR         1025
 #define IDC_EDIT_VUELOS_ORIGEN          1026
 #define IDC_EDIT_VUELOS_DESTINO         1027
 #define IDC_FECHA_SALIDA                1028
@@ -122,7 +122,7 @@
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        135
 #define _APS_NEXT_COMMAND_VALUE         32806
-#define _APS_NEXT_CONTROL_VALUE         1029
+#define _APS_NEXT_CONTROL_VALUE         1030
 #define _APS_NEXT_SYMED_VALUE           110
 #endif
 #endif

@@ -22,6 +22,7 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 		{
 		//Vuelos
 		case ID_VUELOS_REGISTRARVUELO: {
+			vueloIdActual = NULL;
 			DialogBox(NULL, MAKEINTRESOURCE(IDD_VUELO_REGISTRO), handler, (DLGPROC)REGISTRARVUELO);
 			Vuelos_ActualizarLista(handler);
 			return 0;
@@ -29,11 +30,13 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 
 		case ID_VUELOS_ELIMINARVUELO: {
 			DialogBox(NULL, MAKEINTRESOURCE(IDD_VUELO_ELIMINAR), handler, (DLGPROC)ELIMINARVUELO);
+			Vuelos_ActualizarLista(handler);
 			return 0;
 		}
 
 		case ID_VUELOS_MODIFICARVUELO: {
 			DialogBox(NULL, MAKEINTRESOURCE(IDD_VUELO_MODIFICAR), handler, (DLGPROC)MODIFICARVUELO);
+			Vuelos_ActualizarLista(handler);
 			return 0;
 		}
 

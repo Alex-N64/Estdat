@@ -53,18 +53,7 @@ BOOL CALLBACK iniciarSeccion(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 		{
 		
 		case ID_iniciarSesion: {
-			if (!loginStatus) {
-				adminStatus = true;
-				EndDialog(handler, 0);
-
-				DialogBox(NULL, MAKEINTRESOURCE(IDD_Menu), NULL, (DLGPROC)menu);
-
-				return 0;
-			}
-
-			else
-			{
-
+			
 				SendMessage(GetDlgItem(handler, IDC_USUARIO), WM_GETTEXT, sizeof(usuarioWchart) / sizeof(usuarioWchart[0]), (LPARAM)usuarioWchart);
 				SendMessage(GetDlgItem(handler, IDC_CONTRASENA), WM_GETTEXT, sizeof(contrasenaWchart) / sizeof(contrasenaWchart[0]), (LPARAM)contrasenaWchart);
 
@@ -125,9 +114,8 @@ BOOL CALLBACK iniciarSeccion(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 					MessageBox(handler, L"Usuario o contraseña incorrectos", L"Error", MB_ICONERROR);
 					return 0;
 				}
-				return 0;
-			}
 			return 0;
+			
 		}
 
 		case ID_REPARAR_USUARIO: {

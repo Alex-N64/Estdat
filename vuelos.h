@@ -190,6 +190,21 @@ BOOL CALLBACK REGISTRARVUELO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 
 		Vuelos_ActualizarLista(handler);
 
+		if (vuelosActual != NULL) {
+			SendDlgItemMessage(handler, IDC_vueloOrigen, WM_SETTEXT, NULL, (LPARAM)vuelosActual->vueloOrigen);
+			SendDlgItemMessage(handler, IDC_vueloDestino, WM_SETTEXT, NULL, (LPARAM)vuelosActual->vueloDestino);
+			//SendDlgItemMessage(handler, IDC_Dosis, WM_SETTEXT, NULL, (LPARAM)CarnetPersona_actual->Dosis);
+			//SendDlgItemMessage(handler, IDC_CentroVacuna, WM_SETTEXT, NULL, (LPARAM)CarnetPersona_actual->CentroVacuna);
+			//SendDlgItemMessage(handler, IDC_Lote, WM_SETTEXT, NULL, (LPARAM)CarnetPersona_actual->Lote);
+			//SendDlgItemMessage(handler, IDC_ApellidoPaterno, WM_SETTEXT, NULL, (LPARAM)CarnetPersona_actual->ApellidoPaterno);
+			SendDlgItemMessage(handler, IDC_idVuelo, WM_SETTEXT, NULL, (LPARAM)vuelosActual->vueloID);
+			//SendDlgItemMessage(handler, IDC_Nombres, WM_SETTEXT, NULL, (LPARAM)CarnetPersona_actual->Nombres);
+			SendDlgItemMessage(handler, IDC_asientosDisponibles, WM_SETTEXT, NULL, (LPARAM)vuelosActual->vueloAsientos);
+			//SendDlgItemMessage(handler, IDC_FechaNacimiento, DTM_SETSYSTEMTIME, NULL, (LPARAM) & (CarnetPersona_actual->FechaNacimiento));
+			//SendDlgItemMessage(handler, IDC_FechaNacimiento, DTM_SETSYSTEMTIME, NULL, (LPARAM) & (CarnetPersona_actual->FechaNacimiento));
+
+		}
+
 
 
 		return 0;
@@ -199,55 +214,73 @@ BOOL CALLBACK REGISTRARVUELO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 		switch (LOWORD(wParam))
 		{
 		case IDOK: {
-	
-			Vuelos* vuelosNuevo = NULL;
-			if (vuelosActual == NULL) {
-				vuelosNuevo = new Vuelos;
+			wchar_t vueloOrigenVerificacion[256], vueloDestinoVerificacion[256];
 
-				SendMessage(GetDlgItem(handler, IDC_vueloOrigen), WM_GETTEXT, sizeof(vuelosNuevo->vueloOrigen) / sizeof(vuelosNuevo->vueloOrigen[0]), (LPARAM)vuelosNuevo->vueloOrigen);
-				SendMessage(GetDlgItem(handler, IDC_vueloDestino), WM_GETTEXT, sizeof(vuelosNuevo->vueloDestino) / sizeof(vuelosNuevo->vueloDestino[0]), (LPARAM)vuelosNuevo->vueloDestino);
-				//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->) / sizeof(vuelosNuevo->[0]), (LPARAM)vuelosNuevo->);
-				//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->) / sizeof(vuelosNuevo->[0]), (LPARAM)vuelosNuevo->);
-				//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->) / sizeof(vuelosNuevo->[0]), (LPARAM)vuelosNuevo->);
-				//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->) / sizeof(vuelosNuevo->[0]), (LPARAM)vuelosNuevo->);
-				SendMessage(GetDlgItem(handler, IDC_idVuelo), WM_GETTEXT, sizeof(vuelosNuevo->vueloID) / sizeof(vuelosNuevo->vueloID[0]), (LPARAM)vuelosNuevo->vueloID);
-				//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->) / sizeof(vuelosNuevo->[0]), (LPARAM)vuelosNuevo->);
-				SendMessage(GetDlgItem(handler, IDC_asientosDisponibles), WM_GETTEXT, sizeof(vuelosNuevo->vueloAsientos) / sizeof(vuelosNuevo->vueloAsientos[0]), (LPARAM)vuelosNuevo->vueloAsientos);
-				//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->) / sizeof(vuelosNuevo->[0]), (LPARAM)vuelosNuevo->);
+			SendMessage(GetDlgItem(handler, IDC_vueloOrigen), WM_GETTEXT, sizeof(vueloOrigenVerificacion) / sizeof(vueloOrigenVerificacion[0]), (LPARAM)vueloOrigenVerificacion);
+			SendMessage(GetDlgItem(handler, IDC_vueloDestino), WM_GETTEXT, sizeof(vueloDestinoVerificacion) / sizeof(vueloDestinoVerificacion[0]), (LPARAM)vueloDestinoVerificacion);
 
-				vuelosAgregar(vuelosNuevo);
-				Vuelos_ActualizarLista(handler);
+			wstring vueloOrigenWstring(vueloOrigenVerificacion);
+			wstring vueloDestinoWstring(vueloDestinoVerificacion);
 
-				vueloIdActual++;
-
-				ofstream file;
-				file.open(rutaIdVuelo);
-				file << vueloIdActual << endl;
-				file.close();
-
-				Vuelos* b = vuelosBuscar(0);
-				int a = 0;
-				a++;
-
-				EndDialog(handler, 0);
-			}
-
-			else {
-				vuelosNuevo = vuelosActual;
-				SendMessage(GetDlgItem(handler, IDC_vueloOrigen), WM_GETTEXT, sizeof(vuelosNuevo->vueloOrigen) / sizeof(vuelosNuevo->vueloOrigen[0]), (LPARAM)vuelosNuevo->vueloOrigen);
-				SendMessage(GetDlgItem(handler, IDC_vueloDestino), WM_GETTEXT, sizeof(vuelosNuevo->vueloDestino) / sizeof(vuelosNuevo->vueloDestino[0]), (LPARAM)vuelosNuevo->vueloDestino);
-				//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->NumeroConsultorio) / sizeof(vuelosNuevo->NumeroConsultorio[0]), (LPARAM)vuelosNuevo->NumeroConsultorio);
-				//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->TelefonoMedico) / sizeof(vuelosNuevo->TelefonoMedico[0]), (LPARAM)vuelosNuevo->TelefonoMedico);
-				//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->HoraInicio) / sizeof(vuelosNuevo->HoraInicio[0]), (LPARAM)vuelosNuevo->HoraInicio);
-				//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->HoraFinal) / sizeof(vuelosNuevo->HoraFinal[0]), (LPARAM)vuelosNuevo->HoraFinal);
-				SendMessage(GetDlgItem(handler, IDC_idVuelo), WM_GETTEXT, sizeof(vuelosNuevo->vueloID) / sizeof(vuelosNuevo->vueloID[0]), (LPARAM)vuelosNuevo->vueloID);
-				//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->DiaSemana) / sizeof(vuelosNuevo->DiaSemana[0]), (LPARAM)vuelosNuevo->DiaSemana);
-				SendMessage(GetDlgItem(handler, IDC_asientosDisponibles), WM_GETTEXT, sizeof(vuelosNuevo->vueloAsientos) / sizeof(vuelosNuevo->vueloAsientos[0]), (LPARAM)vuelosNuevo->vueloAsientos);
-				//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->DiaSemana) / sizeof(vuelosNuevo->DiaSemana[0]), (LPARAM)vuelosNuevo->DiaSemana);
-
-				EndDialog(handler, 0);
-			}
+			string vueloOrigen(vueloOrigenWstring.begin(), vueloOrigenWstring.end());
+			string vueloDestino(vueloDestinoWstring.begin(), vueloDestinoWstring.end());
 			
+			if (vueloOrigen == "" || vueloDestino == "") {
+				MessageBox(handler, L"No ingreso los datos solicitados", L"Error", MB_ICONERROR);
+				return 0;
+			}
+
+			else
+			{
+				Vuelos* vuelosNuevo = NULL;
+				if (vuelosActual == NULL) {
+					vuelosNuevo = new Vuelos;
+
+					SendMessage(GetDlgItem(handler, IDC_vueloOrigen), WM_GETTEXT, sizeof(vuelosNuevo->vueloOrigen) / sizeof(vuelosNuevo->vueloOrigen[0]), (LPARAM)vuelosNuevo->vueloOrigen);
+					SendMessage(GetDlgItem(handler, IDC_vueloDestino), WM_GETTEXT, sizeof(vuelosNuevo->vueloDestino) / sizeof(vuelosNuevo->vueloDestino[0]), (LPARAM)vuelosNuevo->vueloDestino);
+					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->) / sizeof(vuelosNuevo->[0]), (LPARAM)vuelosNuevo->);
+					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->) / sizeof(vuelosNuevo->[0]), (LPARAM)vuelosNuevo->);
+					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->) / sizeof(vuelosNuevo->[0]), (LPARAM)vuelosNuevo->);
+					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->) / sizeof(vuelosNuevo->[0]), (LPARAM)vuelosNuevo->);
+					SendMessage(GetDlgItem(handler, IDC_idVuelo), WM_GETTEXT, sizeof(vuelosNuevo->vueloID) / sizeof(vuelosNuevo->vueloID[0]), (LPARAM)vuelosNuevo->vueloID);
+					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->) / sizeof(vuelosNuevo->[0]), (LPARAM)vuelosNuevo->);
+					SendMessage(GetDlgItem(handler, IDC_asientosDisponibles), WM_GETTEXT, sizeof(vuelosNuevo->vueloAsientos) / sizeof(vuelosNuevo->vueloAsientos[0]), (LPARAM)vuelosNuevo->vueloAsientos);
+					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->) / sizeof(vuelosNuevo->[0]), (LPARAM)vuelosNuevo->);
+
+					vuelosAgregar(vuelosNuevo);
+					Vuelos_ActualizarLista(handler);
+
+					vueloIdActual++;
+
+					ofstream file;
+					file.open(rutaIdVuelo);
+					file << vueloIdActual << endl;
+					file.close();
+
+					Vuelos* b = vuelosBuscar(0);
+					int a = 0;
+					a++;
+
+					EndDialog(handler, 0);
+				}
+
+				else {
+					vuelosNuevo = vuelosActual;
+					SendMessage(GetDlgItem(handler, IDC_vueloOrigen), WM_GETTEXT, sizeof(vuelosNuevo->vueloOrigen) / sizeof(vuelosNuevo->vueloOrigen[0]), (LPARAM)vuelosNuevo->vueloOrigen);
+					SendMessage(GetDlgItem(handler, IDC_vueloDestino), WM_GETTEXT, sizeof(vuelosNuevo->vueloDestino) / sizeof(vuelosNuevo->vueloDestino[0]), (LPARAM)vuelosNuevo->vueloDestino);
+					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->NumeroConsultorio) / sizeof(vuelosNuevo->NumeroConsultorio[0]), (LPARAM)vuelosNuevo->NumeroConsultorio);
+					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->TelefonoMedico) / sizeof(vuelosNuevo->TelefonoMedico[0]), (LPARAM)vuelosNuevo->TelefonoMedico);
+					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->HoraInicio) / sizeof(vuelosNuevo->HoraInicio[0]), (LPARAM)vuelosNuevo->HoraInicio);
+					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->HoraFinal) / sizeof(vuelosNuevo->HoraFinal[0]), (LPARAM)vuelosNuevo->HoraFinal);
+					SendMessage(GetDlgItem(handler, IDC_idVuelo), WM_GETTEXT, sizeof(vuelosNuevo->vueloID) / sizeof(vuelosNuevo->vueloID[0]), (LPARAM)vuelosNuevo->vueloID);
+					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->DiaSemana) / sizeof(vuelosNuevo->DiaSemana[0]), (LPARAM)vuelosNuevo->DiaSemana);
+					SendMessage(GetDlgItem(handler, IDC_asientosDisponibles), WM_GETTEXT, sizeof(vuelosNuevo->vueloAsientos) / sizeof(vuelosNuevo->vueloAsientos[0]), (LPARAM)vuelosNuevo->vueloAsientos);
+					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->DiaSemana) / sizeof(vuelosNuevo->DiaSemana[0]), (LPARAM)vuelosNuevo->DiaSemana);
+
+					EndDialog(handler, 0);
+				}
+				return 0;
+			}
 			return 0;
 		}
 		case IDCANCEL: {
@@ -288,16 +321,27 @@ BOOL CALLBACK ELIMINARVUELO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lp
 		{
 		case IDOK:
 		{
-			int seleccionado = SendDlgItemMessage(handler, IDC_LIST_VUELO_ELIMINAR, LB_GETCURSEL, NULL, NULL);
+			int seleccionado = SendDlgItemMessage(handler, IDC_vuelos, LB_GETCURSEL, NULL, NULL);
 
 			if (seleccionado == -1) {
 				MessageBox(handler, L"No hay vuelos registrados", L"Error", MB_OK | MB_ICONERROR);
-				break;
+				return 0;
 			}
 
-			vuelosActual = vuelosBuscar(seleccionado);
-			vuelosEliminar(vuelosActual);
-			Vuelos_ActualizarLista(handler);
+			if (MessageBox(handler, L"Esta seguro de querer eliminar el vuelo seleccionado?", L"Eliminando vuelo", MB_OKCANCEL) == IDOK)
+			{
+				vuelosActual = vuelosBuscar(seleccionado);
+				vuelosEliminar(vuelosActual);
+				Vuelos_ActualizarLista(handler);
+				return 0;
+			}
+
+			else
+			{
+				return 0;
+			}
+
+			
 
 			return 0;
 		}
@@ -332,9 +376,35 @@ BOOL CALLBACK ELIMINARVUELO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lp
 BOOL CALLBACK MODIFICARVUELO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 	switch (mensaje)
 	{
+	case WM_INITDIALOG:
+	{
+		Vuelos_ActualizarLista(handler);
+		return 0;
+	}
+
 	case WM_COMMAND: {
 		switch (LOWORD(wParam))
 		{
+		case IDOK:
+		{
+			//if (HIWORD(wParam) == LBN_SELCHANGE) {	}
+
+			int seleccionado = SendDlgItemMessage(handler, IDC_vuelos, LB_GETCURSEL, NULL, NULL);
+			Vuelos* aMostrar = vuelosBuscar(seleccionado);
+
+			if (seleccionado == -1) {
+				MessageBox(handler, L"No hay vuelos registrados", L"Error", MB_OK | MB_ICONERROR);
+				return 0;
+			}
+
+			vuelosActual = vuelosBuscar(seleccionado);
+			EndDialog(handler, 0);
+			DialogBox(NULL, MAKEINTRESOURCE(IDD_VUELO_REGISTRO), handler, (DLGPROC)REGISTRARVUELO);
+			Vuelos_ActualizarLista(handler);
+			return 0;
+
+			//return 0;
+		}
 
 		case IDCANCEL: {
 			EndDialog(handler, 0);
