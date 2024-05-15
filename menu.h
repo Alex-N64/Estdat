@@ -12,7 +12,8 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 	switch (mensaje)
 	{
 	case WM_INITDIALOG: {
-		Vuelos_ActualizarLista(handler);
+		vuelosActualizarLista(handler);
+		pasajerosActualizarLista(handler);
 
 		return 0;
 	}
@@ -22,35 +23,71 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 		{
 		//Vuelos
 		case ID_VUELOS_REGISTRARVUELO: {
-			vueloIdActual = NULL;
+			vuelosActual = NULL;
 			DialogBox(NULL, MAKEINTRESOURCE(IDD_VUELO_REGISTRO), handler, (DLGPROC)REGISTRARVUELO);
-			Vuelos_ActualizarLista(handler);
+			vuelosActualizarLista(handler);
 			return 0;
 		}
 
 		case ID_VUELOS_ELIMINARVUELO: {
 			DialogBox(NULL, MAKEINTRESOURCE(IDD_VUELO_ELIMINAR), handler, (DLGPROC)ELIMINARVUELO);
-			Vuelos_ActualizarLista(handler);
+			vuelosActualizarLista(handler);
 			return 0;
 		}
 
 		case ID_VUELOS_MODIFICARVUELO: {
 			DialogBox(NULL, MAKEINTRESOURCE(IDD_VUELO_MODIFICAR), handler, (DLGPROC)MODIFICARVUELO);
-			Vuelos_ActualizarLista(handler);
+			vuelosActualizarLista(handler);
 			return 0;
 		}
 
+		case IDC_vuelos:
+		{
+			vuelosActualizarLista(handler);
+			if (HIWORD(wParam) == LBN_SELCHANGE) {
+				int seleccionado = SendDlgItemMessage(handler, IDC_vuelos, LB_GETCURSEL, NULL, NULL);
+				Vuelos* aMostrar = vuelosBuscar(seleccionado);
+				SendDlgItemMessage(handler, IDC_EDIT_VUELOS_ORIGEN, WM_SETTEXT, NULL, (LPARAM)aMostrar->vueloOrigen);
+				SendDlgItemMessage(handler, IDC_EDIT_VUELOS_DESTINO, WM_SETTEXT, NULL, (LPARAM)aMostrar->vueloDestino);
+				//SendDlgItemMessage(handler, IDC_Dosis, WM_SETTEXT, NULL, (LPARAM)aMostrar->Dosis);
+				//SendDlgItemMessage(handler, IDC_CentroVacuna, WM_SETTEXT, NULL, (LPARAM)aMostrar->CentroVacuna);
+				//SendDlgItemMessage(handler, IDC_EDIT_HORA_SALIDA, WM_SETTEXT, NULL, (LPARAM)aMostrar->Lote);
+				//SendDlgItemMessage(handler, IDC_EDIT_HORA_LLEGADA, WM_SETTEXT, NULL, (LPARAM)aMostrar->ApellidoPaterno);
+
+				//SendDlgItemMessage(handler, IDC_ApellidoMaterno, WM_SETTEXT, NULL, (LPARAM)aMostrar->ApellidoMaterno);
+				//SendDlgItemMessage(handler, IDC_Nombres, WM_SETTEXT, NULL, (LPARAM)aMostrar->Nombres);
+				//SendDlgItemMessage(handler, IDC_RFC, WM_SETTEXT, NULL, (LPARAM)aMostrar->RFC);
+				//SendDlgItemMessage(handler, IDC_Calle, WM_SETTEXT, NULL, (LPARAM)aMostrar->Calle);
+				//SendDlgItemMessage(handler, IDC_Colonia, WM_SETTEXT, NULL, (LPARAM)aMostrar->Colonia);
+
+				return 0;
+			}
+			return 0;
+		}
+
+
 		//Pasajero
 		case ID_PASAJEROS_REGISTRARPASAJEROS: {
+			pasajerosActual = NULL;
 			DialogBox(NULL, MAKEINTRESOURCE(IDD_PASAJEROS_REGISTRO), handler, (DLGPROC)REGISTRARPASAJEROS);
+			pasajerosActualizarLista(handler);
 			return 0;
 		}
 		case ID_PASAJEROS_ELIMINARPASAJEROS: {
 			DialogBox(NULL, MAKEINTRESOURCE(IDD_PASAJEROS_ELIMINAR), handler, (DLGPROC)ELIMINARPASAJEROS);
+			pasajerosActualizarLista(handler);
 			return 0;
 		}
 		case ID_PASAJEROS_MODIFICARPASAJEROS: {
 			DialogBox(NULL, MAKEINTRESOURCE(IDD_PASAJEROS_MODIFICAR), handler, (DLGPROC)MODIFICARPASAJEROS);
+			pasajerosActualizarLista(handler);
+			return 0;
+		}
+
+		case ID_LISTAS_PASAJEROS:
+		{
+			pasajerosActualizarLista(handler);
+			DialogBox(NULL, MAKEINTRESOURCE(IDD_PASAJEROS_LISTA), handler, (DLGPROC)LISTAPASAJEROS);
 			return 0;
 		}
 		//Boletos
@@ -67,6 +104,12 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 			DialogBox(NULL, MAKEINTRESOURCE(IDD_PASAJEROS_MODIFICAR), handler, (DLGPROC)MODIFICARBOLETOS);
 			return 0;
 		}
+
+		case ID_LISTAS_BOLETOS:
+		{
+
+			return 0;
+		}
 		//Manifiesto
 		case ID_VERMANIFIESTO_VERPORNUMERODEASIENTO: {
 			DialogBox(NULL, MAKEINTRESOURCE(IDD_MANIFIESTO_NUMERO), handler, (DLGPROC)VERPORNUMERODEASIENTO);
@@ -80,30 +123,6 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 			DialogBox(NULL, MAKEINTRESOURCE(IDD_MANIFIESTO_APELLIDO), handler, (DLGPROC)VERPORAPELLIDO);
 			return 0;
 		}
-		//Lista de vuelos
-		case IDC_vuelos:
-		{
-			if (HIWORD(wParam) == LBN_SELCHANGE) {
-				int seleccionado = SendDlgItemMessage(handler, IDC_vuelos, LB_GETCURSEL, NULL, NULL);
-				Vuelos* aMostrar = vuelosBuscar(seleccionado);
-				SendDlgItemMessage(handler, IDC_EDIT_VUELOS_ORIGEN, WM_SETTEXT, NULL, (LPARAM)aMostrar->vueloOrigen);
-				SendDlgItemMessage(handler, IDC_EDIT_VUELOS_DESTINO, WM_SETTEXT, NULL, (LPARAM)aMostrar->vueloDestino);
-				//SendDlgItemMessage(handler, IDC_Dosis, WM_SETTEXT, NULL, (LPARAM)aMostrar->Dosis);
-				//SendDlgItemMessage(handler, IDC_CentroVacuna, WM_SETTEXT, NULL, (LPARAM)aMostrar->CentroVacuna);
-				//SendDlgItemMessage(handler, IDC_EDIT_HORA_SALIDA, WM_SETTEXT, NULL, (LPARAM)aMostrar->Lote);
-				//SendDlgItemMessage(handler, IDC_EDIT_HORA_LLEGADA, WM_SETTEXT, NULL, (LPARAM)aMostrar->ApellidoPaterno);
-				
-				//SendDlgItemMessage(handler, IDC_ApellidoMaterno, WM_SETTEXT, NULL, (LPARAM)aMostrar->ApellidoMaterno);
-				//SendDlgItemMessage(handler, IDC_Nombres, WM_SETTEXT, NULL, (LPARAM)aMostrar->Nombres);
-				//SendDlgItemMessage(handler, IDC_RFC, WM_SETTEXT, NULL, (LPARAM)aMostrar->RFC);
-				//SendDlgItemMessage(handler, IDC_Calle, WM_SETTEXT, NULL, (LPARAM)aMostrar->Calle);
-				//SendDlgItemMessage(handler, IDC_Colonia, WM_SETTEXT, NULL, (LPARAM)aMostrar->Colonia);
-				
-				return 0;
-			}
-			return 0;
-		}
-
 		//Mas opciones
 		case ID_MISC_PASEDEABORDAR: {
 			DialogBox(NULL, MAKEINTRESOURCE(IDD_PASE_ABORDAR), handler, (DLGPROC)PASEABORDAR);

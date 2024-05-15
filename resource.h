@@ -35,6 +35,7 @@
 #define IDD_MANIFIESTO_NUMERO           145
 #define IDD_MANIFIESTO_NOMBRE           146
 #define IDD_MANIFIESTO_APELLIDO         147
+#define IDD_PASAJEROS_LISTA             148
 #define ID_iniciarSesion                1000
 #define IDC_EDIT1                       1002
 #define IDD_crearUsuario                1003
@@ -78,6 +79,11 @@
 #define IDC_EDIT_VUELOS_ORIGEN          1026
 #define IDC_EDIT_VUELOS_DESTINO         1027
 #define IDC_FECHA_SALIDA                1028
+#define IDC_NOMBRE_PASAJEROS            1030
+#define IDC_APELLIDOS_PASAJEROS         1031
+#define IDC_SEXO_PASAJEROS              1032
+#define IDC_NACIONALIDAD_PASAJEROS      1033
+#define IDC_LIST_PASAJERO               1034
 #define ID_VUELOS_REGISTRARVUELO        32771
 #define ID_VUELOS_ELIMINARVUELO         32772
 #define ID_VUELOS_MODIFICARVUELO        32773
@@ -113,6 +119,9 @@
 #define ID_OTRASOPCIONES_REPARAR_ADMIN  32803
 #define ID_M32804                       32804
 #define ID_REPARAR_USUARIO              32805
+#define ID_M32806                       32806
+#define ID_LISTAS_PASAJEROS             32807
+#define ID_LISTAS_BOLETOS               32808
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
@@ -121,8 +130,8 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        135
-#define _APS_NEXT_COMMAND_VALUE         32806
-#define _APS_NEXT_CONTROL_VALUE         1030
+#define _APS_NEXT_COMMAND_VALUE         32809
+#define _APS_NEXT_CONTROL_VALUE         1035
 #define _APS_NEXT_SYMED_VALUE           110
 #endif
 #endif

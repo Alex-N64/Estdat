@@ -101,7 +101,7 @@ void vuelosEliminar(Vuelos* vuelosAEliminar) {
 	delete vuelosAEliminar;
 }
 
-void Vuelos_ActualizarLista(HWND handler) {
+void vuelosActualizarLista(HWND handler) {
 	SendDlgItemMessage(handler, IDC_vuelos, LB_RESETCONTENT, NULL, NULL);
 	if (vuelosInicio == NULL) return;
 
@@ -188,7 +188,7 @@ BOOL CALLBACK REGISTRARVUELO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 		std::wstring text = std::to_wstring(vueloIdActual);
 		SetWindowText(idTraducion, text.c_str());
 
-		Vuelos_ActualizarLista(handler);
+		vuelosActualizarLista(handler);
 
 		if (vuelosActual != NULL) {
 			SendDlgItemMessage(handler, IDC_vueloOrigen, WM_SETTEXT, NULL, (LPARAM)vuelosActual->vueloOrigen);
@@ -248,7 +248,7 @@ BOOL CALLBACK REGISTRARVUELO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->) / sizeof(vuelosNuevo->[0]), (LPARAM)vuelosNuevo->);
 
 					vuelosAgregar(vuelosNuevo);
-					Vuelos_ActualizarLista(handler);
+					vuelosActualizarLista(handler);
 
 					vueloIdActual++;
 
@@ -313,7 +313,7 @@ BOOL CALLBACK ELIMINARVUELO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lp
 	switch (mensaje)
 	{
 	case WM_INITDIALOG: {
-		Vuelos_ActualizarLista(handler);
+		vuelosActualizarLista(handler);
 		return 0;
 	}
 	case WM_COMMAND: {
@@ -332,7 +332,7 @@ BOOL CALLBACK ELIMINARVUELO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lp
 			{
 				vuelosActual = vuelosBuscar(seleccionado);
 				vuelosEliminar(vuelosActual);
-				Vuelos_ActualizarLista(handler);
+				vuelosActualizarLista(handler);
 				return 0;
 			}
 
@@ -378,7 +378,7 @@ BOOL CALLBACK MODIFICARVUELO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 	{
 	case WM_INITDIALOG:
 	{
-		Vuelos_ActualizarLista(handler);
+		vuelosActualizarLista(handler);
 		return 0;
 	}
 
@@ -400,7 +400,7 @@ BOOL CALLBACK MODIFICARVUELO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 			vuelosActual = vuelosBuscar(seleccionado);
 			EndDialog(handler, 0);
 			DialogBox(NULL, MAKEINTRESOURCE(IDD_VUELO_REGISTRO), handler, (DLGPROC)REGISTRARVUELO);
-			Vuelos_ActualizarLista(handler);
+			vuelosActualizarLista(handler);
 			return 0;
 
 			//return 0;
