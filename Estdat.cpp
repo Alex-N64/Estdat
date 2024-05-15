@@ -1,9 +1,9 @@
 #include <locale>
 #include <codecvt>
 
-#include "Estdat.h"
-#include "menu.h"
-#include "misc.h"
+#include "Estdat/scripts/Estdat.h"
+#include "Estdat/scripts/menu.h"
+#include "Estdat/scripts/misc.h"
 
 
 //MessageBox(handler, L"", L"", MB_OK);

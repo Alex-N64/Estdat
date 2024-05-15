@@ -127,16 +127,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="boletos.h" />
-    <ClInclude Include="Estdat.h" />
+    <ClInclude Include="Estdat\scripts\boletos.h" />
+    <ClInclude Include="Estdat\scripts\Estdat.h" />
+    <ClInclude Include="Estdat\scripts\manifiesto.h" />
+    <ClInclude Include="Estdat\scripts\menu.h" />
+    <ClInclude Include="Estdat\scripts\misc.h" />
+    <ClInclude Include="Estdat\scripts\pasajeros.h" />
+    <ClInclude Include="Estdat\scripts\vuelos.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="manifiesto.h" />
-    <ClInclude Include="menu.h" />
-    <ClInclude Include="misc.h" />
-    <ClInclude Include="pasajeros.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="vuelos.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Estdat.cpp" />
