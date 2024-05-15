@@ -6,12 +6,59 @@
 #include "boletos.h"
 #include "manifiesto.h"
 
-
+wchar_t direccion[255];
 
 BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 	switch (mensaje)
 	{
 	case WM_INITDIALOG: {
+		
+		/*
+		OPENFILENAME openfilename;
+		wchar_t Cargar[255];
+		ZeroMemory(&openfilename, sizeof(openfilename));
+		openfilename.lStructSize = sizeof(openfilename);
+		openfilename.hwndOwner = handler;
+		openfilename.lpstrFile = Cargar;
+		openfilename.lpstrFilter = L"Cargar lista y envios en un archivo .bin\0 * .bin";
+		openfilename.Flags = OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST;
+		openfilename.lpstrFile[0] = NULL;
+		openfilename.nMaxFile = sizeof(direccion);
+		openfilename.nFilterIndex = 0;
+		*/
+
+		//if (GetOpenFileName(&openfilename) == TRUE) {
+			vuelosLimpiar();
+			//Vacuna_Limpiar();
+			ifstream Leer;
+			Leer.open(rutaListas, ios::in | ios::binary);
+			if (Leer.is_open()) {
+				while (true) {
+					Vuelos* LeerArchivo = new Vuelos;
+					Leer.read(reinterpret_cast<char*>(LeerArchivo), sizeof(Vuelos));
+					if (Leer.eof()) {
+						delete LeerArchivo;
+						break;
+					}
+					vuelosAgregar(LeerArchivo);
+
+					/*
+					Vacuna* LeerArchivo2 = new Vacuna;
+					Leer.read(reinterpret_cast<char*>(LeerArchivo2), sizeof(Vacuna));
+					if (Leer.eof()) {
+						delete LeerArchivo2;
+						break;
+					}
+					Vacuna_Agregar(LeerArchivo2);
+					*/
+				}
+			}
+			Leer.close();
+			//CarnetPersona_ActualizarLista(handler);
+			//Vacuna_ActualizarLista(handler);
+		//}
+		
+		
 		vuelosActualizarLista(handler);
 		pasajerosActualizarLista(handler);
 
@@ -43,7 +90,7 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 
 		case IDC_vuelos:
 		{
-			vuelosActualizarLista(handler);
+			
 			if (HIWORD(wParam) == LBN_SELCHANGE) {
 				int seleccionado = SendDlgItemMessage(handler, IDC_vuelos, LB_GETCURSEL, NULL, NULL);
 				Vuelos* aMostrar = vuelosBuscar(seleccionado);
@@ -191,6 +238,47 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 
 			else {
 				//MessageBox(handler, L"Guardar", L"Guardar", MB_OK);
+
+				/*
+				OPENFILENAME openfilename;
+				wchar_t Guardar[255];
+				ZeroMemory(&openfilename, sizeof(openfilename));
+				openfilename.lStructSize = sizeof(openfilename);
+				openfilename.hwndOwner = handler;
+				openfilename.lpstrFile = Guardar;
+				openfilename.lpstrFilter = L"Guardar lista y envios en un archivo .bin\0 * .bin";
+				openfilename.Flags = OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST;
+				openfilename.lpstrFile[0] = NULL;
+				openfilename.nMaxFile = sizeof(direccion);
+				openfilename.nFilterIndex = 0;
+				*/
+
+				//if (GetSaveFileName(&openfilename) == TRUE) {
+					ofstream escribir;
+					escribir.open(rutaListas, ios::out | ios::binary | ios::trunc);
+					if (escribir.is_open()) {
+
+						Vuelos* vuelosAux = vuelosInicio;
+						while (vuelosAux->vuelosSiguiente != vuelosInicio) {
+							escribir.write(reinterpret_cast<char*>(vuelosAux), sizeof(Vuelos));
+							vuelosAux = vuelosAux->vuelosSiguiente;
+						}
+
+						/*
+						Vacuna* Vacuna_aux = Vacuna_Inicio;
+						while (Vacuna_aux->Vacuna_siguiente != Vacuna_Inicio) {
+							escribir.write(reinterpret_cast<char*>(Vacuna_aux), sizeof(Vacuna));
+							Vacuna_aux = Vacuna_aux->Vacuna_siguiente;
+						}
+						*/
+
+						escribir.write(reinterpret_cast<char*>(vuelosAux), sizeof(Vuelos));
+						//escribir.write(reinterpret_cast<char*>(Vacuna_aux), sizeof(Vacuna));
+						escribir.close();
+					}
+
+				//}
+
 				DestroyWindow(handler);
 				return 0;
 			}

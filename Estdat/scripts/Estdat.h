@@ -23,6 +23,11 @@ string rutaUsuario = "Estdat/users/";
 string rutaDatos = "Estdat/data/";
 string rutaIdVuelo = "Estdat/data/idVuelos.bin";
 string rutaRecordarUsuario = "Estdat/data/recordarUsuario.bin";
+string rutaListas = "Estdat/data/Listas.bin";
+
+//wchar_t rutaListas[] = L"Estdat/data/Listas.bin";
+//wchar_t rutaListasCargar[MAX_PATH] = L"Estdat/data/Listas.bin";
+
 
 int vueloIdActual;
 
