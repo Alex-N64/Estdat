@@ -14,7 +14,7 @@ C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\pasajeros.h(356,
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\pasajeros.h(413,22): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos
   (compilando archivo de origen "Estdat.cpp")
   
-C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\menu.h(95,22): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos
+C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\menu.h(84,22): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos
   (compilando archivo de origen "Estdat.cpp")
   
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(4537,18): warning C4244: '=': conversión de 'wchar_t' a 'char'; posible pérdida de datos

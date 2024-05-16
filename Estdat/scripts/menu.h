@@ -12,53 +12,42 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 	switch (mensaje)
 	{
 	case WM_INITDIALOG: {
-		
-		/*
-		OPENFILENAME openfilename;
-		wchar_t Cargar[255];
-		ZeroMemory(&openfilename, sizeof(openfilename));
-		openfilename.lStructSize = sizeof(openfilename);
-		openfilename.hwndOwner = handler;
-		openfilename.lpstrFile = Cargar;
-		openfilename.lpstrFilter = L"Cargar lista y envios en un archivo .bin\0 * .bin";
-		openfilename.Flags = OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST;
-		openfilename.lpstrFile[0] = NULL;
-		openfilename.nMaxFile = sizeof(direccion);
-		openfilename.nFilterIndex = 0;
-		*/
-
-		//if (GetOpenFileName(&openfilename) == TRUE) {
 			vuelosLimpiar();
-			//Vacuna_Limpiar();
-			ifstream Leer;
-			Leer.open(rutaListas, ios::in | ios::binary);
-			if (Leer.is_open()) {
+			pasajerosLimpiar();
+			
+			ifstream vuelosEscribir;
+			vuelosEscribir.open(rutaListaVuelos, ios::in | ios::binary);
+			if (vuelosEscribir.is_open()) {
 				while (true) {
-					Vuelos* LeerArchivo = new Vuelos;
-					Leer.read(reinterpret_cast<char*>(LeerArchivo), sizeof(Vuelos));
-					if (Leer.eof()) {
-						delete LeerArchivo;
+					Vuelos* LeerVuelos = new Vuelos;
+					vuelosEscribir.read(reinterpret_cast<char*>(LeerVuelos), sizeof(Vuelos));
+					if (vuelosEscribir.eof()) {
+						delete LeerVuelos;
 						break;
 					}
-					vuelosAgregar(LeerArchivo);
-
-					/*
-					Vacuna* LeerArchivo2 = new Vacuna;
-					Leer.read(reinterpret_cast<char*>(LeerArchivo2), sizeof(Vacuna));
-					if (Leer.eof()) {
-						delete LeerArchivo2;
-						break;
-					}
-					Vacuna_Agregar(LeerArchivo2);
-					*/
+					vuelosAgregar(LeerVuelos);
+					
 				}
 			}
-			Leer.close();
-			//CarnetPersona_ActualizarLista(handler);
-			//Vacuna_ActualizarLista(handler);
-		//}
-		
-		
+			vuelosEscribir.close();
+
+			ifstream pasajerosEscribir;
+			pasajerosEscribir.open(rutaListaPasajeros, ios::in | ios::binary);
+			if (pasajerosEscribir.is_open()) {
+				while (true) {
+					Pasajeros* LeerPasajeros = new Pasajeros;
+					pasajerosEscribir.read(reinterpret_cast<char*>(LeerPasajeros), sizeof(Pasajeros));
+					if (pasajerosEscribir.eof()) {
+						delete LeerPasajeros;
+						break;
+					}
+					pasajerosAgregar(LeerPasajeros);
+
+				}
+			}
+			pasajerosEscribir.close();
+
+			
 		vuelosActualizarLista(handler);
 		pasajerosActualizarLista(handler);
 
@@ -230,61 +219,47 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 		if (MessageBox(handler, L"¿Desea salir de la aplicación? Los cambios realizados se guardarán.", L"Cerrando programa", MB_OKCANCEL) == IDOK)
 		{
 			if (!saveOnExit) {
-				//MessageBox(handler, L"No", L"No", MB_OK);
+				
 				DestroyWindow(handler);
 				return 0;
 
 			}
 
 			else {
-				//MessageBox(handler, L"Guardar", L"Guardar", MB_OK);
-
-				/*
-				OPENFILENAME openfilename;
-				wchar_t Guardar[255];
-				ZeroMemory(&openfilename, sizeof(openfilename));
-				openfilename.lStructSize = sizeof(openfilename);
-				openfilename.hwndOwner = handler;
-				openfilename.lpstrFile = Guardar;
-				openfilename.lpstrFilter = L"Guardar lista y envios en un archivo .bin\0 * .bin";
-				openfilename.Flags = OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST;
-				openfilename.lpstrFile[0] = NULL;
-				openfilename.nMaxFile = sizeof(direccion);
-				openfilename.nFilterIndex = 0;
-				*/
-
-				//if (GetSaveFileName(&openfilename) == TRUE) {
-					ofstream escribir;
-					escribir.open(rutaListas, ios::out | ios::binary | ios::trunc);
-					if (escribir.is_open()) {
+					ofstream vuelosEscribir;
+					vuelosEscribir.open(rutaListaVuelos, ios::out | ios::binary | ios::trunc);
+					if (vuelosEscribir.is_open()) {
 
 						Vuelos* vuelosAux = vuelosInicio;
 						while (vuelosAux->vuelosSiguiente != vuelosInicio) {
-							escribir.write(reinterpret_cast<char*>(vuelosAux), sizeof(Vuelos));
+							vuelosEscribir.write(reinterpret_cast<char*>(vuelosAux), sizeof(Vuelos));
 							vuelosAux = vuelosAux->vuelosSiguiente;
 						}
 
-						/*
-						Vacuna* Vacuna_aux = Vacuna_Inicio;
-						while (Vacuna_aux->Vacuna_siguiente != Vacuna_Inicio) {
-							escribir.write(reinterpret_cast<char*>(Vacuna_aux), sizeof(Vacuna));
-							Vacuna_aux = Vacuna_aux->Vacuna_siguiente;
-						}
-						*/
-
-						escribir.write(reinterpret_cast<char*>(vuelosAux), sizeof(Vuelos));
-						//escribir.write(reinterpret_cast<char*>(Vacuna_aux), sizeof(Vacuna));
-						escribir.close();
+						vuelosEscribir.write(reinterpret_cast<char*>(vuelosAux), sizeof(Vuelos));
+						vuelosEscribir.close();
 					}
 
-				//}
+					ofstream pasajerosEscribir;
+					pasajerosEscribir.open(rutaListaPasajeros, ios::out | ios::binary | ios::trunc);
+					if (pasajerosEscribir.is_open()) {
 
-				DestroyWindow(handler);
+						Pasajeros* pasajerosAux = pasajerosInicio;
+						while (pasajerosAux->pasajerosSiguiente != pasajerosInicio) {
+							pasajerosEscribir.write(reinterpret_cast<char*>(pasajerosAux), sizeof(Pasajeros));
+							pasajerosAux = pasajerosAux->pasajerosSiguiente;
+						}
+
+						pasajerosEscribir.write(reinterpret_cast<char*>(pasajerosAux), sizeof(Pasajeros));
+						pasajerosEscribir.close();
+					}
+					
+					DestroyWindow(handler);
 				return 0;
 			}
 
-			//DestroyWindow(handler);
-			//return 0;
+			DestroyWindow(handler);
+			return 0;
 		}
 		return 0;
 	}
