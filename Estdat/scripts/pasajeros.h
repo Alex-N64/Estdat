@@ -5,7 +5,7 @@ struct Pasajeros
 {
 	wchar_t nombresPasajeros[200];
 	wchar_t apellidosPasajeros[200];
-	wchar_t sexoPasajeros[200];
+	int sexoPasajeros;
 	wchar_t nacionalidadPasajeros[200];
 //	wchar_t fechaNacimientoPasajeros[200];
 
@@ -121,7 +121,7 @@ void pasajerosActualizarLista(HWND handler) {
 		
 		SendDlgItemMessage(handler, IDC_NOMBRE_PASAJEROS, LB_ADDSTRING, NULL, (LPARAM)pasajerosArray[i].nombresPasajeros);
 		SendDlgItemMessage(handler, IDC_APELLIDOS_PASAJEROS, LB_ADDSTRING, NULL, (LPARAM)pasajerosArray[i].apellidosPasajeros);
-		//SendDlgItemMessage(handler, IDC_SEXO_PASAJEROS, LB_ADDSTRING, NULL, (LPARAM)pasajerosArray[i].sexoPasajeros);
+		SendDlgItemMessage(handler, IDC_SEXO_PASAJEROS, LB_ADDSTRING, NULL, (LPARAM)pasajerosArray[i].sexoPasajeros);
 		SendDlgItemMessage(handler, IDC_NACIONALIDAD_PASAJEROS, LB_ADDSTRING, NULL, (LPARAM)pasajerosArray[i].nacionalidadPasajeros);
 		//SendDlgItemMessage(handler, IDC_FechaNacimientoPaciente, LB_ADDSTRING, NULL, (LPARAM)pasajerosArray[i].FechaNacimientoPaciente);
 		//SendDlgItemMessage(handler, IDC_EdadPaciente, LB_ADDSTRING, NULL, (LPARAM)pasajerosArray[i].EdadPaciente);
@@ -169,13 +169,15 @@ BOOL CALLBACK REGISTRARPASAJEROS(HWND handler, UINT mensaje, WPARAM wParam, LPAR
 
 	case WM_INITDIALOG:
 	{
-		
 		pasajerosActualizarLista(handler);
+
+		SendDlgItemMessage(handler, IDC_SEXO_LISTA, CB_ADDSTRING, NULL, (LPARAM)L"Hombre");
+		SendDlgItemMessage(handler, IDC_SEXO_LISTA, CB_ADDSTRING, NULL, (LPARAM)L"Mujer");
 
 		if (pasajerosActual != NULL) {
 			SendDlgItemMessage(handler, IDC_NOMBRE_PASAJEROS, WM_SETTEXT, NULL, (LPARAM)pasajerosActual->nombresPasajeros);
 			SendDlgItemMessage(handler, IDC_APELLIDOS_PASAJEROS, WM_SETTEXT, NULL, (LPARAM)pasajerosActual->apellidosPasajeros);
-			//SendDlgItemMessage(handler, IDC_SEXO_PASAJEROS, WM_SETTEXT, NULL, (LPARAM)CarnetPersona_actual->Dosis);
+			SendDlgItemMessage(handler, IDC_SEXO_PASAJEROS, WM_SETTEXT, NULL, (LPARAM)pasajerosActual->sexoPasajeros);
 			SendDlgItemMessage(handler, IDC_NACIONALIDAD_PASAJEROS, WM_SETTEXT, NULL, (LPARAM)pasajerosActual->nacionalidadPasajeros);
 			//SendDlgItemMessage(handler, IDC_Lote, WM_SETTEXT, NULL, (LPARAM)CarnetPersona_actual->Lote);
 			
@@ -220,8 +222,11 @@ BOOL CALLBACK REGISTRARPASAJEROS(HWND handler, UINT mensaje, WPARAM wParam, LPAR
 					SendMessage(GetDlgItem(handler, IDC_NOMBRE_PASAJEROS), WM_GETTEXT, sizeof(pasajerosNuevo->nombresPasajeros) / sizeof(pasajerosNuevo->nombresPasajeros[0]), (LPARAM)pasajerosNuevo->nombresPasajeros);
 					SendMessage(GetDlgItem(handler, IDC_APELLIDOS_PASAJEROS), WM_GETTEXT, sizeof(pasajerosNuevo->apellidosPasajeros) / sizeof(pasajerosNuevo->apellidosPasajeros[0]), (LPARAM)pasajerosNuevo->apellidosPasajeros);
 					//SendMessage(GetDlgItem(handler, IDC_SEXO_PASAJEROS), WM_GETTEXT, sizeof(pasajerosNuevo->sexoPasajeros) / sizeof(pasajerosNuevo->sexoPasajeros[0]), (LPARAM)pasajerosNuevo->sexoPasajeros);
+					pasajerosNuevo->sexoPasajeros = SendDlgItemMessage(handler, IDC_SEXO_LISTA, CB_GETCURSEL, 0, 0);
+
 					SendMessage(GetDlgItem(handler, IDC_NACIONALIDAD_PASAJEROS), WM_GETTEXT, sizeof(pasajerosNuevo->nacionalidadPasajeros) / sizeof(pasajerosNuevo->nacionalidadPasajeros[0]), (LPARAM)pasajerosNuevo->nacionalidadPasajeros);
 					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->) / sizeof(vuelosNuevo->[0]), (LPARAM)vuelosNuevo->);
+					
 					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->) / sizeof(vuelosNuevo->[0]), (LPARAM)vuelosNuevo->);
 					
 					pasajerosAgregar(pasajerosNuevo);
@@ -239,6 +244,8 @@ BOOL CALLBACK REGISTRARPASAJEROS(HWND handler, UINT mensaje, WPARAM wParam, LPAR
 					SendMessage(GetDlgItem(handler, IDC_NOMBRE_PASAJEROS), WM_GETTEXT, sizeof(pasajerosNuevo->nombresPasajeros) / sizeof(pasajerosNuevo->nombresPasajeros[0]), (LPARAM)pasajerosNuevo->nombresPasajeros);
 					SendMessage(GetDlgItem(handler, IDC_APELLIDOS_PASAJEROS), WM_GETTEXT, sizeof(pasajerosNuevo->apellidosPasajeros) / sizeof(pasajerosNuevo->apellidosPasajeros[0]), (LPARAM)pasajerosNuevo->apellidosPasajeros);
 					//SendMessage(GetDlgItem(handler, IDC_SEXO_PASAJEROS), WM_GETTEXT, sizeof(pasajerosNuevo->sexoPasajeros) / sizeof(pasajerosNuevo->sexoPasajeros[0]), (LPARAM)pasajerosNuevo->sexoPasajeros);
+					
+					pasajerosNuevo->sexoPasajeros = SendDlgItemMessage(handler, IDC_SEXO_LISTA, CB_GETCURSEL, 0, 0);
 					SendMessage(GetDlgItem(handler, IDC_NACIONALIDAD_PASAJEROS), WM_GETTEXT, sizeof(pasajerosNuevo->nacionalidadPasajeros) / sizeof(pasajerosNuevo->nacionalidadPasajeros[0]), (LPARAM)pasajerosNuevo->nacionalidadPasajeros);
 					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->HoraInicio) / sizeof(vuelosNuevo->HoraInicio[0]), (LPARAM)vuelosNuevo->HoraInicio);
 					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->HoraFinal) / sizeof(vuelosNuevo->HoraFinal[0]), (LPARAM)vuelosNuevo->HoraFinal);
@@ -414,7 +421,21 @@ BOOL CALLBACK LISTAPASAJEROS(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 				Pasajeros* aMostrar = pasajerosBuscar(seleccionado);
 				SendDlgItemMessage(handler, IDC_NOMBRE_PASAJEROS, WM_SETTEXT, NULL, (LPARAM)aMostrar->nombresPasajeros);
 				SendDlgItemMessage(handler, IDC_APELLIDOS_PASAJEROS, WM_SETTEXT, NULL, (LPARAM)aMostrar->apellidosPasajeros);
+				
 				//SendDlgItemMessage(handler, IDC_SEXO_PASAJEROS, WM_SETTEXT, NULL, (LPARAM)aMostrar->sexoPasajeros);
+				
+				if (aMostrar->sexoPasajeros == 0)
+				{
+					SendDlgItemMessage(handler, IDC_SEXO_PASAJEROS, WM_SETTEXT, NULL, (LPARAM)L"Hombre");
+				}
+
+				else
+				{
+					SendDlgItemMessage(handler, IDC_SEXO_PASAJEROS, WM_SETTEXT, NULL, (LPARAM)L"Mujer");
+				}
+				
+
+
 				SendDlgItemMessage(handler, IDC_NACIONALIDAD_PASAJEROS, WM_SETTEXT, NULL, (LPARAM)aMostrar->nacionalidadPasajeros);
 				//SendDlgItemMessage(handler, IDC_EDIT_HORA_SALIDA, WM_SETTEXT, NULL, (LPARAM)aMostrar->Lote);
 				//SendDlgItemMessage(handler, IDC_EDIT_HORA_LLEGADA, WM_SETTEXT, NULL, (LPARAM)aMostrar->ApellidoPaterno);

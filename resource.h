@@ -5,7 +5,6 @@
 #define IDC_MYICON                      2
 #define REPOSITORIO                     2
 #define IDD_SUBIR_IMAGEN                3
-#define IDCANCEL2                       3
 #define IDD_ESTDAT_DIALOG               102
 #define IDS_APP_TITLE                   103
 #define IDD_ABOUTBOX                    103
@@ -54,6 +53,7 @@
 #define IDC_COMBO1                      1007
 #define IDC_EDIT9                       1007
 #define IDC_tipoAvion                   1007
+#define IDC_SEXO_LISTA                  1007
 #define IDC_EDIT5                       1008
 #define IDC_EDIT_HORA_SALIDA            1008
 #define IDC_COMBO2                      1009
