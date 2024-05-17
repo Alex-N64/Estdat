@@ -1,8 +1,11 @@
 ﻿  Estdat.cpp
-C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\vuelos.h(324,21): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos
+C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\vuelos.h(254,54): warning C4244: '=': conversión de 'LRESULT' a 'int'; posible pérdida de datos
   (compilando archivo de origen "Estdat.cpp")
   
-C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\vuelos.h(392,21): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos
+C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\vuelos.h(332,21): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos
+  (compilando archivo de origen "Estdat.cpp")
+  
+C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\vuelos.h(398,21): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos
   (compilando archivo de origen "Estdat.cpp")
   
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\pasajeros.h(225,56): warning C4244: '=': conversión de 'LRESULT' a 'int'; posible pérdida de datos
@@ -18,6 +21,12 @@ C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\pasajeros.h(363,
   (compilando archivo de origen "Estdat.cpp")
   
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\pasajeros.h(420,22): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos
+  (compilando archivo de origen "Estdat.cpp")
+  
+C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\boletos.h(196,22): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos
+  (compilando archivo de origen "Estdat.cpp")
+  
+C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\boletos.h(209,22): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos
   (compilando archivo de origen "Estdat.cpp")
   
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\menu.h(84,22): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos

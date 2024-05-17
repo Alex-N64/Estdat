@@ -89,11 +89,64 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 				//SendDlgItemMessage(handler, IDC_CentroVacuna, WM_SETTEXT, NULL, (LPARAM)aMostrar->CentroVacuna);
 				//SendDlgItemMessage(handler, IDC_EDIT_HORA_SALIDA, WM_SETTEXT, NULL, (LPARAM)aMostrar->Lote);
 				//SendDlgItemMessage(handler, IDC_EDIT_HORA_LLEGADA, WM_SETTEXT, NULL, (LPARAM)aMostrar->ApellidoPaterno);
-
 				//SendDlgItemMessage(handler, IDC_ApellidoMaterno, WM_SETTEXT, NULL, (LPARAM)aMostrar->ApellidoMaterno);
 				//SendDlgItemMessage(handler, IDC_Nombres, WM_SETTEXT, NULL, (LPARAM)aMostrar->Nombres);
-				//SendDlgItemMessage(handler, IDC_RFC, WM_SETTEXT, NULL, (LPARAM)aMostrar->RFC);
-				//SendDlgItemMessage(handler, IDC_Calle, WM_SETTEXT, NULL, (LPARAM)aMostrar->Calle);
+				
+				/*
+					
+				SendDlgItemMessage(handler, IDC_asientosDisponibles, WM_SETTEXT, NULL, (LPARAM)aMostrar->vueloAsientos);
+
+				if (aMostrar->vueloTipoAvion == 0)
+				{
+					SendDlgItemMessage(handler, IDC_asientosDisponibles, WM_SETTEXT, NULL, (LPARAM)L"4");
+				}
+
+				else
+				{
+					SendDlgItemMessage(handler, IDC_asientosDisponibles, WM_SETTEXT, NULL, (LPARAM)L"5");
+				}
+
+				if (aMostrar->vueloClase)
+				{
+					SendDlgItemMessage(handler, IDC_claseAvion_EditBox, WM_SETTEXT, NULL, (LPARAM)L"Clase turista");
+				}
+
+				else
+				{
+					SendDlgItemMessage(handler, IDC_claseAvion_EditBox, WM_SETTEXT, NULL, (LPARAM)L"Clase ejecutiva");
+					
+				}
+				*/
+
+				if (aMostrar->vueloTipoAvion == 0)
+				{
+					SendDlgItemMessage(handler, IDC_tipoAvion_EditBox, WM_SETTEXT, NULL, (LPARAM)L"Airbus A380");
+				}
+
+				else if (aMostrar->vueloTipoAvion == 1)
+				{
+					SendDlgItemMessage(handler, IDC_tipoAvion_EditBox, WM_SETTEXT, NULL, (LPARAM)L"Boeing 777");
+				}
+				else if (aMostrar->vueloTipoAvion == 2)
+				{
+					SendDlgItemMessage(handler, IDC_tipoAvion_EditBox, WM_SETTEXT, NULL, (LPARAM)L"Boeing 787 Dreamliner");
+				}
+				else if (aMostrar->vueloTipoAvion == 3)
+				{
+					SendDlgItemMessage(handler, IDC_tipoAvion_EditBox, WM_SETTEXT, NULL, (LPARAM)L"Airbus A350");
+				}
+				else if (aMostrar->vueloTipoAvion == 4)
+				{
+					SendDlgItemMessage(handler, IDC_tipoAvion_EditBox, WM_SETTEXT, NULL, (LPARAM)L"Boeing 737");
+				}
+
+				else
+				{
+					SendDlgItemMessage(handler, IDC_tipoAvion_EditBox, WM_SETTEXT, NULL, (LPARAM)L"");
+				}
+
+				
+				
 				//SendDlgItemMessage(handler, IDC_Colonia, WM_SETTEXT, NULL, (LPARAM)aMostrar->Colonia);
 
 				return 0;
