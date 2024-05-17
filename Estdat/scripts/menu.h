@@ -14,6 +14,7 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 	case WM_INITDIALOG: {
 			vuelosLimpiar();
 			pasajerosLimpiar();
+			boletosLimpiar();
 			
 			ifstream vuelosEscribir;
 			vuelosEscribir.open(rutaListaVuelos, ios::in | ios::binary);
@@ -47,9 +48,26 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 			}
 			pasajerosEscribir.close();
 
+			ifstream boletosEscribir;
+			boletosEscribir.open(rutaListaBoletos, ios::in | ios::binary);
+			if (boletosEscribir.is_open()) {
+				while (true) {
+					Boletos* LeerBoletos = new Boletos;
+					boletosEscribir.read(reinterpret_cast<char*>(LeerBoletos), sizeof(Boletos));
+					if (boletosEscribir.eof()) {
+						delete LeerBoletos;
+						break;
+					}
+					boletosAgregar(LeerBoletos);
+
+				}
+			}
+			boletosEscribir.close();
+
 			
 		vuelosActualizarLista(handler);
 		pasajerosActualizarLista(handler);
+		boletosActualizarLista(handler);
 
 		return 0;
 	}
@@ -147,9 +165,6 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 
 				 //SendDlgItemMessage(handler, IDC_Asientos_Disponibles, WM_SETTEXT, NULL, (LPARAM)aMostrar->asientos);
 				
-
-				
-				
 				//SendDlgItemMessage(handler, IDC_Colonia, WM_SETTEXT, NULL, (LPARAM)aMostrar->Colonia);
 
 				return 0;
@@ -185,21 +200,26 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 		//Boletos
 
 		case ID_BOLETOS_COMPRARBOLETOS: {
+			boletosActual = NULL;
 			DialogBox(NULL, MAKEINTRESOURCE(IDD_BOLETOS_REGISTRO), handler, (DLGPROC)COMPRARBOLETOS);
+			boletosActualizarLista(handler);
 			return 0;
 		}
 		case ID_BOLETOS_CANCELARBOLETOS: {
 			DialogBox(NULL, MAKEINTRESOURCE(IDD_BOLETOS_ELIMINAR), handler, (DLGPROC)CANCELARBOLETOS);
+			boletosActualizarLista(handler);
 			return 0;
 		}
 		case ID_BOLETOS_MODIFICARBOLETOS: {
 			DialogBox(NULL, MAKEINTRESOURCE(IDD_PASAJEROS_MODIFICAR), handler, (DLGPROC)MODIFICARBOLETOS);
+			boletosActualizarLista(handler);
 			return 0;
 		}
 
 		case ID_LISTAS_BOLETOS:
 		{
-
+			boletosActualizarLista(handler);
+			DialogBox(NULL, MAKEINTRESOURCE(IDD_BOLETOS_LISTA), handler, (DLGPROC)LISTABOLETOS);
 			return 0;
 		}
 		//Manifiesto
@@ -308,6 +328,20 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 
 						pasajerosEscribir.write(reinterpret_cast<char*>(pasajerosAux), sizeof(Pasajeros));
 						pasajerosEscribir.close();
+					}
+
+					ofstream boletosEscribir;
+					boletosEscribir.open(rutaListaBoletos, ios::out | ios::binary | ios::trunc);
+					if (boletosEscribir.is_open()) {
+
+						Boletos* boletosAux = boletosInicio;
+						while (boletosAux->boletosSiguiente != boletosInicio) {
+							boletosEscribir.write(reinterpret_cast<char*>(boletosAux), sizeof(Boletos));
+							boletosAux = boletosAux->boletosSiguiente;
+						}
+
+						boletosEscribir.write(reinterpret_cast<char*>(boletosAux), sizeof(Boletos));
+						boletosEscribir.close();
 					}
 					
 					DestroyWindow(handler);

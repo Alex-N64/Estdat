@@ -3,11 +3,14 @@
 
 struct Boletos
 {
-	wchar_t nombresPasajeros[200];
-	wchar_t apellidosPasajeros[200];
-	int sexoPasajeros;
-	wchar_t nacionalidadPasajeros[200];
-	//	wchar_t fechaNacimientoPasajeros[200];
+	wchar_t nombreBoleto[200];
+	wchar_t apellidoBoleto[200];
+	wchar_t idBoleto[200];
+	wchar_t avionBoleto[200];
+	//wchar_t asientoBoleto
+	int tipoBoleto;
+	int claseBoleto;
+	int pagoBoleto;
 
 	Boletos* boletosSiguiente;
 	Boletos* boletosAnterior;
@@ -29,7 +32,8 @@ int partition(Boletos* arr, int low, int high) {
 	int i = low - 1;
 
 	for (int j = low; j <= high - 1; j++) {
-		if (wcscmp(arr[j].nombresPasajeros, pivot.nombresPasajeros) < 0) { //         <---------------
+		if (wcscmp(arr[j].nombreBoleto, pivot.nombreBoleto) < 0) 
+		{ 
 			i++;
 			swap(&arr[i], &arr[j]);
 		}
@@ -52,10 +56,10 @@ void heapify(Boletos* arr, int n, int i) {
 	int l = 2 * i + 1;
 	int r = 2 * i + 2;
 
-	if (l < n && wcscmp(arr[l].nombresPasajeros, arr[largest].nombresPasajeros) > 0)     //<-----------
+	if (l < n && wcscmp(arr[l].nombreBoleto, arr[largest].nombreBoleto) > 0)     
 		largest = l;
 
-	if (r < n && wcscmp(arr[r].nombresPasajeros, arr[largest].nombresPasajeros) > 0)     //<-----------
+	if (r < n && wcscmp(arr[r].nombreBoleto, arr[largest].nombreBoleto) > 0)     
 		largest = r;
 
 	if (largest != i) {
@@ -96,7 +100,7 @@ void boletosEliminar(Boletos* boletosAEliminar) {
 }
 
 void boletosActualizarLista(HWND handler) {
-	//SendDlgItemMessage(handler, IDC_LIST_PASAJERO, LB_RESETCONTENT, NULL, NULL);  <-----
+	SendDlgItemMessage(handler, IDC_LIST_BOLETOS, LB_RESETCONTENT, NULL, NULL);
 	if (boletosInicio == NULL) return;
 
 	Boletos* boletosAux = boletosInicio;
@@ -119,37 +123,41 @@ void boletosActualizarLista(HWND handler) {
 
 	for (int i = 0; i <= totalBoletos; i++) {
 
-		//SendDlgItemMessage(handler, IDC_NOMBRE_PASAJEROS, LB_ADDSTRING, NULL, (LPARAM)pasajerosArray[i].nombresPasajeros);
-		//SendDlgItemMessage(handler, IDC_APELLIDOS_PASAJEROS, LB_ADDSTRING, NULL, (LPARAM)pasajerosArray[i].apellidosPasajeros);
-		//SendDlgItemMessage(handler, IDC_SEXO_PASAJEROS, LB_ADDSTRING, NULL, (LPARAM)pasajerosArray[i].sexoPasajeros);
-		//SendDlgItemMessage(handler, IDC_NACIONALIDAD_PASAJEROS, LB_ADDSTRING, NULL, (LPARAM)pasajerosArray[i].nacionalidadPasajeros);
-		//SendDlgItemMessage(handler, IDC_FechaNacimientoPaciente, LB_ADDSTRING, NULL, (LPARAM)pasajerosArray[i].FechaNacimientoPaciente);
-		//SendDlgItemMessage(handler, IDC_EdadPaciente, LB_ADDSTRING, NULL, (LPARAM)pasajerosArray[i].EdadPaciente);
+		SendDlgItemMessage(handler, IDC_NOMBRE_BOLETOS, LB_ADDSTRING, NULL, (LPARAM)boletosArray[i].nombreBoleto);
+		SendDlgItemMessage(handler, IDC_APELLIDOS_BOLETOS, LB_ADDSTRING, NULL, (LPARAM)boletosArray[i].apellidoBoleto);
+		SendDlgItemMessage(handler, IDC_ID_BOLETOS, LB_ADDSTRING, NULL, (LPARAM)boletosArray[i].idBoleto);
+		SendDlgItemMessage(handler, IDC_TIPO_AVION_BOLETOS, LB_ADDSTRING, NULL, (LPARAM)boletosArray[i].avionBoleto);
+		
+		SendDlgItemMessage(handler, IDC_TIPO_BOLETO_EDITBOX, LB_ADDSTRING, NULL, (LPARAM)boletosArray[i].tipoBoleto);
+		SendDlgItemMessage(handler, IDC_CLASE_BOLETO_EDITBOX, LB_ADDSTRING, NULL, (LPARAM)boletosArray[i].claseBoleto);
+		SendDlgItemMessage(handler, IDC_PAGO_BOLETO_EDITBOX, LB_ADDSTRING, NULL, (LPARAM)boletosArray[i].pagoBoleto);
 
+		//SendDlgItemMessage(handler, IDC_FechaNacimientoPaciente, LB_ADDSTRING, NULL, (LPARAM)pasajerosArray[i].FechaNacimientoPaciente);
+		
 	}
 
 	delete[] boletosArray;
 
 	while (boletosAux->boletosSiguiente != boletosInicio) {
-		//SendDlgItemMessage(handler, IDC_LIST_PASAJERO, LB_ADDSTRING, NULL, (LPARAM)pasajerosAux->nombresPasajeros);
+		SendDlgItemMessage(handler, IDC_LIST_BOLETOS, LB_ADDSTRING, NULL, (LPARAM)boletosAux->nombreBoleto);
 		boletosAux = boletosAux->boletosSiguiente;
 	}
-	//SendDlgItemMessage(handler, IDC_LIST_PASAJERO, LB_ADDSTRING, NULL, (LPARAM)pasajerosAux->nombresPasajeros);
+	SendDlgItemMessage(handler, IDC_LIST_BOLETOS, LB_ADDSTRING, NULL, (LPARAM)boletosAux->nombreBoleto);
 
 }
 
 void boletosLimpiar() {
 
-	if (pasajerosInicio != NULL) {
-		Pasajeros* pasajerosAux = pasajerosInicio;
-		while (pasajerosAux->pasajerosSiguiente != pasajerosInicio) {
-			pasajerosAux = pasajerosAux->pasajerosSiguiente;
-			delete pasajerosAux->pasajerosAnterior;
+	if (boletosInicio != NULL) {
+		Boletos* boletosAux = boletosInicio;
+		while (boletosAux->boletosSiguiente != boletosInicio) {
+			boletosAux = boletosAux->boletosSiguiente;
+			delete boletosAux->boletosAnterior;
 		}
-		delete pasajerosAux;
+		delete boletosAux;
 	}
-	pasajerosInicio = NULL;
-	pasajerosActual = NULL;
+	boletosInicio = NULL;
+	boletosActual = NULL;
 
 }
 
@@ -244,6 +252,86 @@ BOOL CALLBACK COMPRARBOLETOS(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 			return 0;
 		}
 
+		case IDOK:
+		{
+			wchar_t nombreVerificacion[256], apellidosVerificacion[256], idVerificacion[256], tipoVerificacion[256];
+
+			SendMessage(GetDlgItem(handler, IDC_NOMBRE_BOLETOS), WM_GETTEXT, sizeof(nombreVerificacion) / sizeof(nombreVerificacion[0]), (LPARAM)nombreVerificacion);
+			SendMessage(GetDlgItem(handler, IDC_APELLIDOS_BOLETOS), WM_GETTEXT, sizeof(apellidosVerificacion) / sizeof(apellidosVerificacion[0]), (LPARAM)apellidosVerificacion);
+			SendMessage(GetDlgItem(handler, IDC_ID_BOLETOS), WM_GETTEXT, sizeof(idVerificacion) / sizeof(idVerificacion[0]), (LPARAM)idVerificacion);
+			SendMessage(GetDlgItem(handler, IDC_TIPO_AVION_BOLETOS), WM_GETTEXT, sizeof(tipoVerificacion) / sizeof(tipoVerificacion[0]), (LPARAM)tipoVerificacion);
+
+			wstring nombresWstring(nombreVerificacion);
+			wstring apellidosWstring(apellidosVerificacion);
+			wstring idWstring(idVerificacion);
+			wstring tipoWstring(tipoVerificacion);
+
+			string boletoNombre(nombresWstring.begin(), nombresWstring.end());
+			string boletoApellidos(apellidosWstring.begin(), apellidosWstring.end());
+			string boletoId(idWstring.begin(), idWstring.end());
+			string boletoTipo(tipoWstring.begin(), tipoWstring.end());
+
+			if (boletoNombre == "" || boletoApellidos == "" || boletoId == "" || boletoTipo == "") {
+				MessageBox(handler, L"No ingreso los datos solicitados", L"Error", MB_ICONERROR);
+				return 0;
+			}
+
+			else
+			{
+				Boletos* boletosNuevo = NULL;
+				if (boletosActual == NULL) {
+					boletosNuevo = new Boletos;
+
+					SendMessage(GetDlgItem(handler, IDC_NOMBRE_BOLETOS), WM_GETTEXT, sizeof(boletosNuevo->nombreBoleto) / sizeof(boletosNuevo->nombreBoleto[0]), (LPARAM)boletosNuevo->nombreBoleto);
+					SendMessage(GetDlgItem(handler, IDC_APELLIDOS_BOLETOS), WM_GETTEXT, sizeof(boletosNuevo->apellidoBoleto) / sizeof(boletosNuevo->apellidoBoleto[0]), (LPARAM)boletosNuevo->apellidoBoleto);
+					SendMessage(GetDlgItem(handler, IDC_ID_BOLETOS), WM_GETTEXT, sizeof(boletosNuevo->idBoleto) / sizeof(boletosNuevo->idBoleto[0]), (LPARAM)boletosNuevo->idBoleto);
+					SendMessage(GetDlgItem(handler, IDC_TIPO_AVION_BOLETOS), WM_GETTEXT, sizeof(boletosNuevo->avionBoleto) / sizeof(boletosNuevo->avionBoleto[0]), (LPARAM)boletosNuevo->avionBoleto);
+					
+					boletosNuevo->tipoBoleto = SendDlgItemMessage(handler, IDC_TipoBoleto, CB_GETCURSEL, 0, 0);
+					boletosNuevo->claseBoleto = SendDlgItemMessage(handler, IDC_CLASE_BOLETO, CB_GETCURSEL, 0, 0);
+					boletosNuevo->pagoBoleto = SendDlgItemMessage(handler, IDC_FORMA_PAGO, CB_GETCURSEL, 0, 0);
+
+
+					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(pasajerosNuevo->apellidosPasajeros) / sizeof(pasajerosNuevo->apellidosPasajeros[0]), (LPARAM)pasajerosNuevo->apellidosPasajeros);
+					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(pasajerosNuevo->apellidosPasajeros) / sizeof(pasajerosNuevo->apellidosPasajeros[0]), (LPARAM)pasajerosNuevo->apellidosPasajeros);
+					//SendMessage(GetDlgItem(handler, IDC_SEXO_PASAJEROS), WM_GETTEXT, sizeof(pasajerosNuevo->sexoPasajeros) / sizeof(pasajerosNuevo->sexoPasajeros[0]), (LPARAM)pasajerosNuevo->sexoPasajeros);
+					//pasajerosNuevo->sexoPasajeros = SendDlgItemMessage(handler, IDC_SEXO_LISTA, CB_GETCURSEL, 0, 0);
+
+				
+					boletosAgregar(boletosNuevo);
+					boletosActualizarLista(handler);
+
+					Boletos* b = boletosBuscar(0);
+					int a = 0;
+					a++;
+
+					EndDialog(handler, 0);
+				}
+
+				else {
+					boletosNuevo = boletosActual;
+					SendMessage(GetDlgItem(handler, IDC_NOMBRE_BOLETOS), WM_GETTEXT, sizeof(boletosNuevo->nombreBoleto) / sizeof(boletosNuevo->nombreBoleto[0]), (LPARAM)boletosNuevo->nombreBoleto);
+					SendMessage(GetDlgItem(handler, IDC_APELLIDOS_BOLETOS), WM_GETTEXT, sizeof(boletosNuevo->apellidoBoleto) / sizeof(boletosNuevo->apellidoBoleto[0]), (LPARAM)boletosNuevo->apellidoBoleto);
+					SendMessage(GetDlgItem(handler, IDC_ID_BOLETOS), WM_GETTEXT, sizeof(boletosNuevo->idBoleto) / sizeof(boletosNuevo->idBoleto[0]), (LPARAM)boletosNuevo->idBoleto);
+					SendMessage(GetDlgItem(handler, IDC_TIPO_AVION_BOLETOS), WM_GETTEXT, sizeof(boletosNuevo->avionBoleto) / sizeof(boletosNuevo->avionBoleto[0]), (LPARAM)boletosNuevo->avionBoleto);
+
+					boletosNuevo->tipoBoleto = SendDlgItemMessage(handler, IDC_TipoBoleto, CB_GETCURSEL, 0, 0);
+					boletosNuevo->claseBoleto = SendDlgItemMessage(handler, IDC_CLASE_BOLETO, CB_GETCURSEL, 0, 0);
+					boletosNuevo->pagoBoleto = SendDlgItemMessage(handler, IDC_FORMA_PAGO, CB_GETCURSEL, 0, 0);
+
+					//pasajerosNuevo->sexoPasajeros = SendDlgItemMessage(handler, IDC_SEXO_LISTA, CB_GETCURSEL, 0, 0);
+					//SendMessage(GetDlgItem(handler, IDC_NACIONALIDAD_PASAJEROS), WM_GETTEXT, sizeof(pasajerosNuevo->nacionalidadPasajeros) / sizeof(pasajerosNuevo->nacionalidadPasajeros[0]), (LPARAM)pasajerosNuevo->nacionalidadPasajeros);
+					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->HoraInicio) / sizeof(vuelosNuevo->HoraInicio[0]), (LPARAM)vuelosNuevo->HoraInicio);
+					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->HoraFinal) / sizeof(vuelosNuevo->HoraFinal[0]), (LPARAM)vuelosNuevo->HoraFinal);
+
+					EndDialog(handler, 0);
+				}
+				return 0;
+			}
+
+			return 0;
+		}
+
 		case IDCANCEL: {
 			EndDialog(handler, 0);
 			return 0;
@@ -273,9 +361,39 @@ BOOL CALLBACK COMPRARBOLETOS(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 BOOL CALLBACK CANCELARBOLETOS(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 	switch (mensaje)
 	{
+	case WM_INITDIALOG:
+	{
+		boletosActualizarLista(handler);
+		return 0;
+	}
+
 	case WM_COMMAND: {
 		switch (LOWORD(wParam))
 		{
+		case IDOK:
+		{
+			int seleccionado = SendDlgItemMessage(handler, IDC_LIST_BOLETOS, LB_GETCURSEL, NULL, NULL);
+
+			if (seleccionado == -1) {
+				MessageBox(handler, L"No hay boletos registrados", L"Error", MB_OK | MB_ICONERROR);
+				return 0;
+			}
+
+			if (MessageBox(handler, L"Esta seguro de querer eliminar el boleto seleccionado?", L"Eliminando boleto", MB_OKCANCEL) == IDOK)
+			{
+				boletosActual = boletosBuscar(seleccionado);
+				boletosEliminar(boletosActual);
+				boletosActualizarLista(handler);
+				return 0;
+			}
+
+			else
+			{
+				return 0;
+			}
+
+			return 0;
+		}
 
 		case IDCANCEL: {
 			EndDialog(handler, 0);
@@ -306,9 +424,32 @@ BOOL CALLBACK CANCELARBOLETOS(HWND handler, UINT mensaje, WPARAM wParam, LPARAM 
 BOOL CALLBACK MODIFICARBOLETOS(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 	switch (mensaje)
 	{
+	case WM_INITDIALOG:
+	{
+		boletosActualizarLista(handler);
+		return 0;
+	}
+
 	case WM_COMMAND: {
 		switch (LOWORD(wParam))
 		{
+		case IDOK:
+		{
+			int seleccionado = SendDlgItemMessage(handler, IDC_LIST_BOLETOS, LB_GETCURSEL, NULL, NULL);
+			Boletos* aMostrar = boletosBuscar(seleccionado);
+
+			if (seleccionado == -1) {
+				MessageBox(handler, L"No hay boletos registrados", L"Error", MB_OK | MB_ICONERROR);
+				return 0;
+			}
+
+			boletosActual = boletosBuscar(seleccionado);
+			EndDialog(handler, 0);
+			DialogBox(NULL, MAKEINTRESOURCE(IDD_BOLETOS_REGISTRO), handler, (DLGPROC)COMPRARBOLETOS);
+			boletosActualizarLista(handler);
+			return 0;
+
+		}
 
 		case IDCANCEL: {
 			EndDialog(handler, 0);
@@ -335,4 +476,122 @@ BOOL CALLBACK MODIFICARBOLETOS(HWND handler, UINT mensaje, WPARAM wParam, LPARAM
 	}
 	return false;
 }
+
+BOOL CALLBACK LISTABOLETOS(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
+	switch (mensaje)
+	{
+	case WM_INITDIALOG:
+	{
+		boletosActualizarLista(handler);
+		return 0;
+	}
+
+	case WM_COMMAND: {
+		switch (LOWORD(wParam))
+		{
+		case IDC_LIST_BOLETOS:
+		{
+			if (HIWORD(wParam) == LBN_SELCHANGE) {
+				int seleccionado = SendDlgItemMessage(handler, IDC_LIST_BOLETOS, LB_GETCURSEL, NULL, NULL);
+				Boletos* aMostrar = boletosBuscar(seleccionado);
+				SendDlgItemMessage(handler, IDC_NOMBRE_BOLETOS, WM_SETTEXT, NULL, (LPARAM)aMostrar->nombreBoleto);
+				SendDlgItemMessage(handler, IDC_APELLIDOS_BOLETOS, WM_SETTEXT, NULL, (LPARAM)aMostrar->apellidoBoleto);
+				SendDlgItemMessage(handler, IDC_ID_BOLETOS, WM_SETTEXT, NULL, (LPARAM)aMostrar->idBoleto);
+				SendDlgItemMessage(handler, IDC_TIPO_AVION_BOLETOS, WM_SETTEXT, NULL, (LPARAM)aMostrar->avionBoleto);
+
+				
+				if (aMostrar->tipoBoleto == 0)
+				{
+					SendDlgItemMessage(handler, IDC_TIPO_BOLETO_EDITBOX, WM_SETTEXT, NULL, (LPARAM)L"Normal");
+				}
+
+				else if (aMostrar->tipoBoleto == 1)
+				{
+					SendDlgItemMessage(handler, IDC_TIPO_BOLETO_EDITBOX, WM_SETTEXT, NULL, (LPARAM)L"Infantil");
+				}
+
+				else if (aMostrar->tipoBoleto == 2)
+				{
+					SendDlgItemMessage(handler, IDC_TIPO_BOLETO_EDITBOX, WM_SETTEXT, NULL, (LPARAM)L"Mayor de edad");
+				}
+
+				else
+				{
+					SendDlgItemMessage(handler, IDC_TIPO_BOLETO_EDITBOX, WM_SETTEXT, NULL, (LPARAM)L"");
+				}
+				
+				//-----------------------------------
+				
+				if (aMostrar->claseBoleto == 0)
+				{
+					SendDlgItemMessage(handler, IDC_CLASE_BOLETO_EDITBOX, WM_SETTEXT, NULL, (LPARAM)L"Turista");
+				}
+
+				else if (aMostrar->claseBoleto == 1)
+				{
+					SendDlgItemMessage(handler, IDC_CLASE_BOLETO_EDITBOX, WM_SETTEXT, NULL, (LPARAM)L"Ejecutiva");
+				}
+
+				else
+				{
+					SendDlgItemMessage(handler, IDC_CLASE_BOLETO_EDITBOX, WM_SETTEXT, NULL, (LPARAM)L"");
+				}
+
+				//-----------------------------------
+
+				if (aMostrar->pagoBoleto == 0)
+				{
+					SendDlgItemMessage(handler, IDC_PAGO_BOLETO_EDITBOX, WM_SETTEXT, NULL, (LPARAM)L"Efectivo");
+				}
+
+				else if (aMostrar->pagoBoleto == 1)
+				{
+					SendDlgItemMessage(handler, IDC_PAGO_BOLETO_EDITBOX, WM_SETTEXT, NULL, (LPARAM)L"Tarjeta de debito/credito");
+				}
+
+				else if (aMostrar->pagoBoleto == 2)
+				{
+					SendDlgItemMessage(handler, IDC_PAGO_BOLETO_EDITBOX, WM_SETTEXT, NULL, (LPARAM)L"Transferencia");
+				}
+
+				else
+				{
+					SendDlgItemMessage(handler, IDC_PAGO_BOLETO_EDITBOX, WM_SETTEXT, NULL, (LPARAM)L"");
+				}
+	
+				//SendDlgItemMessage(handler, IDC_EDIT_HORA_SALIDA, WM_SETTEXT, NULL, (LPARAM)aMostrar->Lote);
+				//SendDlgItemMessage(handler, IDC_EDIT_HORA_LLEGADA, WM_SETTEXT, NULL, (LPARAM)aMostrar->ApellidoPaterno);
+
+
+				return 0;
+			}
+			return 0;
+		}
+
+		case IDCANCEL: {
+			EndDialog(handler, 0);
+			return 0;
+		}
+
+		default:
+			return 0;
+		}
+	}
+
+	case WM_CLOSE: {
+		EndDialog(handler, 0);
+		return 0;
+	}
+
+
+	case WM_DESTROY: {
+		return 0;
+	}
+
+	default:
+		return 0;
+	}
+	return false;
+}
+
 

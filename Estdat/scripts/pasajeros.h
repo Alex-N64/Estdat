@@ -300,7 +300,7 @@ BOOL CALLBACK ELIMINARPASAJEROS(HWND handler, UINT mensaje, WPARAM wParam, LPARA
 			int seleccionado = SendDlgItemMessage(handler, IDC_LIST_PASAJERO, LB_GETCURSEL, NULL, NULL);
 
 			if (seleccionado == -1) {
-				MessageBox(handler, L"No hay vuelos registrados", L"Error", MB_OK | MB_ICONERROR);
+				MessageBox(handler, L"No hay pasajeros registrados", L"Error", MB_OK | MB_ICONERROR);
 				return 0;
 			}
 

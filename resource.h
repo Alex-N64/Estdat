@@ -35,6 +35,7 @@
 #define IDD_MANIFIESTO_NOMBRE           146
 #define IDD_MANIFIESTO_APELLIDO         147
 #define IDD_PASAJEROS_LISTA             148
+#define IDD_BOLETOS_LISTA               149
 #define ID_iniciarSesion                1000
 #define IDC_EDIT1                       1002
 #define IDD_crearUsuario                1003
@@ -64,12 +65,14 @@
 #define IDC_ID_BOLETOS                  1009
 #define IDC_DATETIMEPICKER5             1010
 #define IDC_horaSalida                  1010
-#define IDC_TIPO_AVION                  1010
 #define IDC_TIPO_AVION_BOLETOS          1010
 #define IDC_LIST1                       1011
 #define IDC_horaLlegada                 1011
+#define IDC_TIPO_BOLETO_EDITBOX         1011
+#define IDC_CLASE_BOLETO_EDITBOX        1012
 #define IDC_DATETIMEPICKER4             1013
 #define IDC_USUARIO                     1014
+#define IDC_PAGO_BOLETO_EDITBOX         1014
 #define IDC_CORREO                      1015
 #define IDC_NOMBRE                      1016
 #define IDC_GENERO                      1017
@@ -94,6 +97,7 @@
 #define IDC_FORMA_PAGO                  1038
 #define IDC_NOMBRE_BOLETOS              1040
 #define IDC_ASIENTOS_BOLETOS            1041
+#define IDC_LIST_BOLETOS                1042
 #define ID_VUELOS_REGISTRARVUELO        32771
 #define ID_VUELOS_ELIMINARVUELO         32772
 #define ID_VUELOS_MODIFICARVUELO        32773
@@ -141,7 +145,7 @@
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        135
 #define _APS_NEXT_COMMAND_VALUE         32809
-#define _APS_NEXT_CONTROL_VALUE         1042
+#define _APS_NEXT_CONTROL_VALUE         1043
 #define _APS_NEXT_SYMED_VALUE           110
 #endif
 #endif
