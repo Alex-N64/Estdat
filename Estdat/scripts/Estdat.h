@@ -23,6 +23,7 @@ string rutaUsuario = "Estdat/users/";
 string rutaDatos = "Estdat/data/";
 string rutaIdVuelo = "Estdat/data/idVuelos.bin";
 string rutaRecordarUsuario = "Estdat/data/recordarUsuario.bin";
+string rutaBoletosConteo = "Estdat/data/boletos/rutaBoletosConteo.bin";
 
 string rutaListaVuelos = "Estdat/data/ListaVuelos.bin";
 string rutaListaPasajeros = "Estdat/data/ListaPasajeros.bin";

@@ -13,7 +13,9 @@ struct Vuelos
 	wchar_t vueloID[200];
 	//wchar_t vueloTipoAvion[200];
 	int vueloTipoAvion;
-	wchar_t vueloAsientos[200];
+	//int asientos;
+	//wchar_t vueloAsientos[200];
+
 
 	Vuelos* vuelosSiguiente;
 	Vuelos* vuelosAnterior;
@@ -253,6 +255,39 @@ BOOL CALLBACK REGISTRARVUELO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 					//SendMessage(GetDlgItem(handler, IDC_asientosDisponibles), WM_GETTEXT, sizeof(vuelosNuevo->vueloAsientos) / sizeof(vuelosNuevo->vueloAsientos[0]), (LPARAM)vuelosNuevo->vueloAsientos);
 					vuelosNuevo->vueloTipoAvion = SendDlgItemMessage(handler, IDC_tipoAvion, CB_GETCURSEL, 0, 0);
 
+					/*
+					if (vuelosNuevo->vueloTipoAvion == 0)
+					{
+						vuelosNuevo->asientos =+ 1;
+					}
+
+					else if (vuelosNuevo->vueloTipoAvion == 1)
+					{
+						vuelosNuevo->asientos =+ 2;
+					}
+
+					else if (vuelosNuevo->vueloTipoAvion == 2)
+					{
+						vuelosNuevo->asientos =+ 3;
+					}
+					
+					else if (vuelosNuevo->vueloTipoAvion == 3)
+					{
+						vuelosNuevo->asientos =+ 4;
+					}
+
+					else if (vuelosNuevo->vueloTipoAvion == 4)
+					{
+						vuelosNuevo->asientos =+ 5;
+					}
+
+					else 
+					{
+
+					}
+
+					*/
+					
 					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->) / sizeof(vuelosNuevo->[0]), (LPARAM)vuelosNuevo->);
 
 					vuelosAgregar(vuelosNuevo);
@@ -284,6 +319,40 @@ BOOL CALLBACK REGISTRARVUELO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->DiaSemana) / sizeof(vuelosNuevo->DiaSemana[0]), (LPARAM)vuelosNuevo->DiaSemana);
 					//SendMessage(GetDlgItem(handler, IDC_asientosDisponibles), WM_GETTEXT, sizeof(vuelosNuevo->vueloAsientos) / sizeof(vuelosNuevo->vueloAsientos[0]), (LPARAM)vuelosNuevo->vueloAsientos);
 					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->DiaSemana) / sizeof(vuelosNuevo->DiaSemana[0]), (LPARAM)vuelosNuevo->DiaSemana);
+
+					vuelosNuevo->vueloTipoAvion = SendDlgItemMessage(handler, IDC_tipoAvion, CB_GETCURSEL, 0, 0);
+
+					/*
+					if (vuelosNuevo->vueloTipoAvion == 0)
+					{
+						vuelosNuevo->asientos = +1;
+					}
+
+					else if (vuelosNuevo->vueloTipoAvion == 1)
+					{
+						vuelosNuevo->asientos = +2;
+					}
+
+					else if (vuelosNuevo->vueloTipoAvion == 2)
+					{
+						vuelosNuevo->asientos = +3;
+					}
+
+					else if (vuelosNuevo->vueloTipoAvion == 3)
+					{
+						vuelosNuevo->asientos = +4;
+					}
+
+					else if (vuelosNuevo->vueloTipoAvion == 4)
+					{
+						vuelosNuevo->asientos = +5;
+					}
+
+					else
+					{
+
+					}
+					*/
 
 					EndDialog(handler, 0);
 				}
