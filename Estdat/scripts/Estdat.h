@@ -24,10 +24,10 @@ string rutaDatos = "Estdat/data/";
 string rutaIdVuelo = "Estdat/data/idVuelos.bin";
 string rutaRecordarUsuario = "Estdat/data/recordarUsuario.bin";
 string rutaBoletosConteo = "Estdat/data/boletos/rutaBoletosConteo.bin";
-
 string rutaListaVuelos = "Estdat/data/ListaVuelos.bin";
 string rutaListaPasajeros = "Estdat/data/ListaPasajeros.bin";
 string rutaListaBoletos = "Estdat/data/ListaBoletos.bin";
+string rutaReporteVuelos = "Estdat/exports/ReporteVuelo/";
 
 //wchar_t rutaListas[] = L"Estdat/data/Listas.bin";
 //wchar_t rutaListasCargar[MAX_PATH] = L"Estdat/data/Listas.bin";

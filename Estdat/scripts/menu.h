@@ -236,6 +236,22 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 			return 0;
 		}
 		//Mas opciones
+		case IDOK:
+		{
+			if (MessageBox(handler, L"Desea exportar el vuelo actual? ", L"Exportar", MB_ICONINFORMATION | MB_OKCANCEL) == IDOK)
+			{
+				exportarVuelo(handler);
+				return 0;
+			}
+
+			else
+			{
+				return 0;
+			}
+
+			return 0;
+		}
+
 		case ID_MISC_PASEDEABORDAR: {
 			DialogBox(NULL, MAKEINTRESOURCE(IDD_PASE_ABORDAR), handler, (DLGPROC)PASEABORDAR);
 			return 0;

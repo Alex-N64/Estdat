@@ -138,6 +138,8 @@ void pasajerosActualizarLista(HWND handler) {
 		
 }
 
+
+
 void pasajerosLimpiar() {
 
 	if (pasajerosInicio != NULL) {
@@ -233,6 +235,8 @@ BOOL CALLBACK REGISTRARPASAJEROS(HWND handler, UINT mensaje, WPARAM wParam, LPAR
 
 					pasajerosAgregar(pasajerosNuevo);
 					pasajerosActualizarLista(handler);
+
+					
 
 					Pasajeros* b = pasajerosBuscar(0);
 					int a = 0;

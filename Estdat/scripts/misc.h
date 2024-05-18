@@ -21,6 +21,60 @@ void usuariosReparar(HWND handler) {
 
 }
 
+void exportarVuelo(HWND handler)
+{
+	wchar_t vueloOrigenWchart[256], vueloDestinoWchart[256], fechaSalidaWchart[256], 
+			fechaLlegadaWchart[256], horaSalidaWchart[256], horaLlegadaWchart[256], tipoAvionWchart[256];
+
+	SendMessage(GetDlgItem(handler, IDC_EDIT_VUELOS_ORIGEN), WM_GETTEXT, sizeof(vueloOrigenWchart) / sizeof(vueloOrigenWchart[0]), (LPARAM)vueloOrigenWchart);
+	SendMessage(GetDlgItem(handler, IDC_EDIT_VUELOS_DESTINO), WM_GETTEXT, sizeof(vueloDestinoWchart) / sizeof(vueloDestinoWchart[0]), (LPARAM)vueloDestinoWchart);
+	SendMessage(GetDlgItem(handler, IDC_FECHA_SALIDA), WM_GETTEXT, sizeof(fechaSalidaWchart) / sizeof(fechaSalidaWchart[0]), (LPARAM)fechaSalidaWchart);
+	SendMessage(GetDlgItem(handler, IDC_FECHA_LLEGADA), WM_GETTEXT, sizeof(fechaLlegadaWchart) / sizeof(fechaLlegadaWchart[0]), (LPARAM)fechaLlegadaWchart);
+	SendMessage(GetDlgItem(handler, IDC_EDIT_HORA_SALIDA), WM_GETTEXT, sizeof(horaSalidaWchart) / sizeof(horaSalidaWchart[0]), (LPARAM)horaSalidaWchart);
+	SendMessage(GetDlgItem(handler, IDC_EDIT_HORA_LLEGADA), WM_GETTEXT, sizeof(horaLlegadaWchart) / sizeof(horaLlegadaWchart[0]), (LPARAM)horaLlegadaWchart);
+	SendMessage(GetDlgItem(handler, IDC_tipoAvion_EditBox), WM_GETTEXT, sizeof(tipoAvionWchart) / sizeof(tipoAvionWchart[0]), (LPARAM)tipoAvionWchart);
+
+	wstring vueloOrigenWstring(vueloOrigenWchart);
+	wstring vueloDestinoWstring(vueloDestinoWchart);
+	wstring fechaSalidaWstring(fechaSalidaWchart);
+	wstring fechaLlegadaWstring(fechaLlegadaWchart);
+	wstring horaSalidaWstring(horaSalidaWchart);
+	wstring horaLlegadaWstring(horaLlegadaWchart);
+	wstring tipoAvionWstring(tipoAvionWchart);
+
+
+	string vueloOrigen(vueloOrigenWstring.begin(), vueloOrigenWstring.end());
+	string vueloDestino(vueloDestinoWstring.begin(), vueloDestinoWstring.end());
+	string fechaSalida(fechaSalidaWstring.begin(), fechaSalidaWstring.end());
+	string fechaLlegada(fechaLlegadaWstring.begin(), fechaLlegadaWstring.end());
+	string horaSalida(horaSalidaWstring.begin(), horaSalidaWstring.end());
+	string horaLlegada(horaLlegadaWstring.begin(), horaLlegadaWstring.end());
+	string tipoAvion(tipoAvionWstring.begin(), tipoAvionWstring.end());
+
+	if (vueloOrigen == ""|| vueloDestino == ""|| tipoAvion == "")
+	{
+		MessageBox(handler, L"No has seleccionado un vuelo", L"Error", MB_ICONERROR | MB_OK);
+
+	}
+
+	else
+	{
+		ofstream file;
+		file.open(rutaReporteVuelos + vueloOrigen +" a " + vueloDestino + ".txt");
+		file << vueloOrigen << endl;
+		file << vueloDestino << endl;
+		file << fechaSalida << endl;
+		file << fechaLlegada << endl;
+		file << horaSalida << endl;
+		file << horaLlegada << endl;
+		file << tipoAvion << endl;
+		file.close();
+
+		MessageBox(handler, L"El vuelo ha sido exportado con exitom, se ha gurdado en la siguiente ruta: Estdat/exports/ReporteVuelo", L"Exportar", MB_ICONINFORMATION);
+	}
+
+}
+
 BOOL CALLBACK ABOUTBOX(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 	switch (mensaje)
 	{
