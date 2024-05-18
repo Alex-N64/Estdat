@@ -48,6 +48,9 @@
     <ClInclude Include="Estdat\scripts\manifiesto.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="Estdat\scripts\pasesAbordar.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Estdat.cpp">

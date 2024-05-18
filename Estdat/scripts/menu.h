@@ -5,6 +5,7 @@
 #include "pasajeros.h"
 #include "boletos.h"
 #include "manifiesto.h"
+#include "pasesAbordar.h"
 
 wchar_t direccion[255];
 
@@ -223,6 +224,10 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 			return 0;
 		}
 		//Manifiesto
+		case ID_MISC_PASEDEABORDAR: {
+			DialogBox(NULL, MAKEINTRESOURCE(IDD_PASE_ABORDAR), handler, (DLGPROC)COMPRARPASES);
+			return 0;
+		}
 		case ID_VERMANIFIESTO_VERPORNUMERODEASIENTO: {
 			DialogBox(NULL, MAKEINTRESOURCE(IDD_MANIFIESTO_NUMERO), handler, (DLGPROC)VERPORNUMERODEASIENTO);
 			return 0;
@@ -252,10 +257,6 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 			return 0;
 		}
 
-		case ID_MISC_PASEDEABORDAR: {
-			DialogBox(NULL, MAKEINTRESOURCE(IDD_PASE_ABORDAR), handler, (DLGPROC)PASEABORDAR);
-			return 0;
-		}
 		case ID_ADMIN_REGISTRARUSUARIOS: {
 			if (!adminStatus) {
 				MessageBox(handler, L"Se necesitan permisos de administrador para poder agregar nuevos usuarios", L"Admin", MB_ICONEXCLAMATION);

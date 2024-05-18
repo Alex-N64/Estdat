@@ -133,6 +133,7 @@
     <ClInclude Include="Estdat\scripts\menu.h" />
     <ClInclude Include="Estdat\scripts\misc.h" />
     <ClInclude Include="Estdat\scripts\pasajeros.h" />
+    <ClInclude Include="Estdat\scripts\pasesAbordar.h" />
     <ClInclude Include="Estdat\scripts\vuelos.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Resource.h" />

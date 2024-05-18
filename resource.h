@@ -30,12 +30,13 @@
 #define IDD_PASAJEROS_MODIFICAR1        142
 #define IDD_BOLETOS_MODIFICAR           142
 #define IDD_USUARIO                     143
-#define IDD_PASE_ABORDAR                144
 #define IDD_MANIFIESTO_NUMERO           145
 #define IDD_MANIFIESTO_NOMBRE           146
 #define IDD_MANIFIESTO_APELLIDO         147
 #define IDD_PASAJEROS_LISTA             148
 #define IDD_BOLETOS_LISTA               149
+#define IDD_BOLETOS_REGISTRO1           150
+#define IDD_PASE_ABORDAR                150
 #define ID_iniciarSesion                1000
 #define IDC_EDIT1                       1002
 #define IDD_crearUsuario                1003
@@ -49,7 +50,6 @@
 #define IDC_fechaLlegada                1005
 #define IDC_EDIT4                       1006
 #define IDC_EDIT7                       1006
-#define IDC_DATETIMEPICKER3             1006
 #define IDC_FECHA_LLEGADA               1006
 #define IDC_COMBO1                      1007
 #define IDC_EDIT9                       1007
