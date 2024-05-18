@@ -229,6 +229,8 @@ BOOL CALLBACK REGISTRARPASAJEROS(HWND handler, UINT mensaje, WPARAM wParam, LPAR
 					
 					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->) / sizeof(vuelosNuevo->[0]), (LPARAM)vuelosNuevo->);
 					
+
+
 					pasajerosAgregar(pasajerosNuevo);
 					pasajerosActualizarLista(handler);
 

@@ -133,6 +133,8 @@ void boletosActualizarLista(HWND handler) {
 		SendDlgItemMessage(handler, IDC_PAGO_BOLETO_EDITBOX, LB_ADDSTRING, NULL, (LPARAM)boletosArray[i].pagoBoleto);
 
 		//SendDlgItemMessage(handler, IDC_FechaNacimientoPaciente, LB_ADDSTRING, NULL, (LPARAM)pasajerosArray[i].FechaNacimientoPaciente);
+
+
 		
 	}
 
@@ -298,14 +300,24 @@ BOOL CALLBACK COMPRARBOLETOS(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 					//pasajerosNuevo->sexoPasajeros = SendDlgItemMessage(handler, IDC_SEXO_LISTA, CB_GETCURSEL, 0, 0);
 
 				
-					boletosAgregar(boletosNuevo);
-					boletosActualizarLista(handler);
+					if (boletosNuevo->tipoBoleto <= 0 || boletosNuevo->claseBoleto <= 0 || boletosNuevo->pagoBoleto <= 0)
+					{
+						MessageBox(handler, L"No ingreso los datos solicitados", L"Error", MB_ICONEXCLAMATION | MB_OK);
+						return 0;
+					}
 
-					Boletos* b = boletosBuscar(0);
-					int a = 0;
-					a++;
+					else
+					{
+						boletosAgregar(boletosNuevo);
+						boletosActualizarLista(handler);
 
-					EndDialog(handler, 0);
+						Boletos* b = boletosBuscar(0);
+						int a = 0;
+						a++;
+						
+						EndDialog(handler, 0);
+						return 0;
+					}
 				}
 
 				else {
@@ -318,6 +330,8 @@ BOOL CALLBACK COMPRARBOLETOS(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 					boletosNuevo->tipoBoleto = SendDlgItemMessage(handler, IDC_TipoBoleto, CB_GETCURSEL, 0, 0);
 					boletosNuevo->claseBoleto = SendDlgItemMessage(handler, IDC_CLASE_BOLETO, CB_GETCURSEL, 0, 0);
 					boletosNuevo->pagoBoleto = SendDlgItemMessage(handler, IDC_FORMA_PAGO, CB_GETCURSEL, 0, 0);
+
+
 
 					//pasajerosNuevo->sexoPasajeros = SendDlgItemMessage(handler, IDC_SEXO_LISTA, CB_GETCURSEL, 0, 0);
 					//SendMessage(GetDlgItem(handler, IDC_NACIONALIDAD_PASAJEROS), WM_GETTEXT, sizeof(pasajerosNuevo->nacionalidadPasajeros) / sizeof(pasajerosNuevo->nacionalidadPasajeros[0]), (LPARAM)pasajerosNuevo->nacionalidadPasajeros);

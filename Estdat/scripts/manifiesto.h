@@ -1,5 +1,7 @@
 #pragma once
 
+
+
 BOOL CALLBACK VERPORNUMERODEASIENTO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 	switch (mensaje)
 	{

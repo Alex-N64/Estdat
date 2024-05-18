@@ -211,7 +211,7 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 			return 0;
 		}
 		case ID_BOLETOS_MODIFICARBOLETOS: {
-			DialogBox(NULL, MAKEINTRESOURCE(IDD_PASAJEROS_MODIFICAR), handler, (DLGPROC)MODIFICARBOLETOS);
+			DialogBox(NULL, MAKEINTRESOURCE(IDD_BOLETOS_MODIFICAR), handler, (DLGPROC)MODIFICARBOLETOS);
 			boletosActualizarLista(handler);
 			return 0;
 		}
