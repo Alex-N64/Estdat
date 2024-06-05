@@ -1,134 +1,36 @@
 ﻿  Estdat.cpp
-C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\vuelos.h(256,54): warning C4244: '=': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
-C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\vuelos.h(323,54): warning C4244: '=': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
-C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\vuelos.h(401,21): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
-C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\vuelos.h(467,21): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
+C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\vuelos.h(283,54): warning C4244: '=': conversión de 'LRESULT' a 'int'; posible pérdida de datos
+C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\vuelos.h(352,54): warning C4244: '=': conversión de 'LRESULT' a 'int'; posible pérdida de datos
+C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\vuelos.h(398,21): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos
+C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\vuelos.h(464,21): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\pasajeros.h(227,56): warning C4244: '=': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\pasajeros.h(254,56): warning C4244: '=': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\pasajeros.h(306,21): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\pasajeros.h(369,22): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\pasajeros.h(426,22): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\boletos.h(206,22): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\boletos.h(219,22): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\boletos.h(292,51): warning C4244: '=': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\boletos.h(293,52): warning C4244: '=': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\boletos.h(294,51): warning C4244: '=': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\boletos.h(330,51): warning C4244: '=': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\boletos.h(331,52): warning C4244: '=': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\boletos.h(332,51): warning C4244: '=': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\boletos.h(389,21): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\boletos.h(452,21): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\boletos.h(509,22): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\manifiesto.h(54,22): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\pasesAbordar.h(206,22): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\pasesAbordar.h(219,22): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\pasesAbordar.h(292,48): warning C4244: '=': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\pasesAbordar.h(293,49): warning C4244: '=': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\pasesAbordar.h(294,48): warning C4244: '=': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\pasesAbordar.h(330,48): warning C4244: '=': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\pasesAbordar.h(331,49): warning C4244: '=': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\pasesAbordar.h(332,48): warning C4244: '=': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\pasesAbordar.h(389,21): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\pasesAbordar.h(452,21): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\pasesAbordar.h(509,22): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
 C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\menu.h(103,22): warning C4244: 'inicializando': conversión de 'LRESULT' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(4537,18): warning C4244: '=': conversión de 'wchar_t' a 'char'; posible pérdida de datos
-  (compilando archivo de origen "Estdat.cpp")
-  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(4537,18):
-  el contexto de creación de instancias de la plantilla (el más antiguo primero) es
-  	C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\misc.h(46,20):
-  	Vea la referencia a la creación de una instancia de la función plantilla "std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)" que se está compilando
-          with
-          [
-              _Elem=wchar_t,
-              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
-              _Alloc=std::allocator<char>
-          ]
-  		C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\Estdat\scripts\misc.h(46,20):
-  		vea la primera referencia a “std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string” en “exportarVuelo”
-  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xstring(2600,17):
-  	Vea la referencia a la creación de una instancia de la función plantilla "void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<wchar_t*,wchar_t*,_Size_type>(_Iter,const _Sent,_Size)" que se está compilando
-          with
-          [
-              _Size_type=unsigned __int64,
-              _Iter=wchar_t *,
-              _Sent=wchar_t *,
-              _Size=unsigned __int64
-          ]
-  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xstring(2756,18):
-  	Vea la referencia a la creación de una instancia de la función plantilla "_OutIt *std::_Copy_n_unchecked4<wchar_t*,_Size,char*>(_InIt,_SizeTy,_OutIt)" que se está compilando
-          with
-          [
-              _OutIt=char *,
-              _Size=unsigned __int64,
-              _InIt=wchar_t *,
-              _SizeTy=unsigned __int64
-          ]
-  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\xutility(4672,18): warning C4244: '=': conversión de 'wchar_t' a 'char'; posible pérdida de datos
   Estdat.vcxproj -> C:\Users\alexi\Documents\ProgramacionFcfm\Estdat\x64\Debug\Estdat.exe

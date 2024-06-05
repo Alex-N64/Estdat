@@ -105,39 +105,20 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 				
 				SendDlgItemMessage(handler, IDC_EDIT_VUELOS_ORIGEN, WM_SETTEXT, NULL, (LPARAM)aMostrar->vueloOrigen);
 				SendDlgItemMessage(handler, IDC_EDIT_VUELOS_DESTINO, WM_SETTEXT, NULL, (LPARAM)aMostrar->vueloDestino);
-				//SendDlgItemMessage(handler, IDC_Asientos_Disponibles, WM_SETTEXT, NULL, (LPARAM)aMostrar->asientos);
+				
+				SendDlgItemMessage(handler, IDC_FECHA_SALIDA, WM_SETTEXT, NULL, (LPARAM)fechaSalidaString(aMostrar->vueloFechaSalida).c_str());
+				SendDlgItemMessage(handler, IDC_FECHA_LLEGADA, WM_SETTEXT, NULL, (LPARAM)fechaLlegadaString(aMostrar->vueloFechaLlegada).c_str());
+				
+				SendDlgItemMessage(handler, IDC_EDIT_HORA_SALIDA, WM_SETTEXT, NULL, (LPARAM)horaSalidaString(aMostrar->vueloHoraSalida).c_str());
+				SendDlgItemMessage(handler, IDC_EDIT_HORA_LLEGADA, WM_SETTEXT, NULL, (LPARAM)horaLlegadaString(aMostrar->vueloHoraLlegada).c_str());
+
 				//SendDlgItemMessage(handler, IDC_CentroVacuna, WM_SETTEXT, NULL, (LPARAM)aMostrar->CentroVacuna);
 				//SendDlgItemMessage(handler, IDC_EDIT_HORA_SALIDA, WM_SETTEXT, NULL, (LPARAM)aMostrar->Lote);
 				//SendDlgItemMessage(handler, IDC_EDIT_HORA_LLEGADA, WM_SETTEXT, NULL, (LPARAM)aMostrar->ApellidoPaterno);
 				//SendDlgItemMessage(handler, IDC_ApellidoMaterno, WM_SETTEXT, NULL, (LPARAM)aMostrar->ApellidoMaterno);
 				//SendDlgItemMessage(handler, IDC_Nombres, WM_SETTEXT, NULL, (LPARAM)aMostrar->Nombres);
 				
-				/*
-					
-				SendDlgItemMessage(handler, IDC_asientosDisponibles, WM_SETTEXT, NULL, (LPARAM)aMostrar->vueloAsientos);
-
-				if (aMostrar->vueloTipoAvion == 0)
-				{
-					SendDlgItemMessage(handler, IDC_asientosDisponibles, WM_SETTEXT, NULL, (LPARAM)L"4");
-				}
-
-				else
-				{
-					SendDlgItemMessage(handler, IDC_asientosDisponibles, WM_SETTEXT, NULL, (LPARAM)L"5");
-				}
-
-				if (aMostrar->vueloClase)
-				{
-					SendDlgItemMessage(handler, IDC_claseAvion_EditBox, WM_SETTEXT, NULL, (LPARAM)L"Clase turista");
-				}
-
-				else
-				{
-					SendDlgItemMessage(handler, IDC_claseAvion_EditBox, WM_SETTEXT, NULL, (LPARAM)L"Clase ejecutiva");
-					
-				}
-				*/
-
+	
 				if (aMostrar->vueloTipoAvion == 0)
 				{
 					SendDlgItemMessage(handler, IDC_tipoAvion_EditBox, WM_SETTEXT, NULL, (LPARAM)L"Airbus A380");
