@@ -113,11 +113,6 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 				SendDlgItemMessage(handler, IDC_EDIT_HORA_LLEGADA, WM_SETTEXT, NULL, (LPARAM)horaLlegadaString(aMostrar->vueloHoraLlegada).c_str());
 
 				//SendDlgItemMessage(handler, IDC_CentroVacuna, WM_SETTEXT, NULL, (LPARAM)aMostrar->CentroVacuna);
-				//SendDlgItemMessage(handler, IDC_EDIT_HORA_SALIDA, WM_SETTEXT, NULL, (LPARAM)aMostrar->Lote);
-				//SendDlgItemMessage(handler, IDC_EDIT_HORA_LLEGADA, WM_SETTEXT, NULL, (LPARAM)aMostrar->ApellidoPaterno);
-				//SendDlgItemMessage(handler, IDC_ApellidoMaterno, WM_SETTEXT, NULL, (LPARAM)aMostrar->ApellidoMaterno);
-				//SendDlgItemMessage(handler, IDC_Nombres, WM_SETTEXT, NULL, (LPARAM)aMostrar->Nombres);
-				
 	
 				if (aMostrar->vueloTipoAvion == 0)
 				{
@@ -144,10 +139,6 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 				{
 					SendDlgItemMessage(handler, IDC_tipoAvion_EditBox, WM_SETTEXT, NULL, (LPARAM)L"");
 				}
-
-				 //SendDlgItemMessage(handler, IDC_Asientos_Disponibles, WM_SETTEXT, NULL, (LPARAM)aMostrar->asientos);
-				
-				//SendDlgItemMessage(handler, IDC_Colonia, WM_SETTEXT, NULL, (LPARAM)aMostrar->Colonia);
 
 				return 0;
 			}

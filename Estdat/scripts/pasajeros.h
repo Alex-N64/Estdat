@@ -7,7 +7,7 @@ struct Pasajeros
 	wchar_t apellidosPasajeros[200];
 	int sexoPasajeros;
 	wchar_t nacionalidadPasajeros[200];
-//	wchar_t fechaNacimientoPasajeros[200];
+	SYSTEMTIME fechaNacimientoPasajeros;
 
 	Pasajeros* pasajerosSiguiente;
 	Pasajeros* pasajerosAnterior;
@@ -138,8 +138,6 @@ void pasajerosActualizarLista(HWND handler) {
 		
 }
 
-
-
 void pasajerosLimpiar() {
 
 	if (pasajerosInicio != NULL) {
@@ -165,6 +163,11 @@ Pasajeros* pasajerosBuscar(int i) {
 
 
 
+wstring fechaNacimientoString(SYSTEMTIME fechaNacimientoPasajeros) {
+	return to_wstring(fechaNacimientoPasajeros.wDay) + L"/" + to_wstring(fechaNacimientoPasajeros.wMonth) + L"/" + to_wstring(fechaNacimientoPasajeros.wYear);
+}
+
+
 BOOL CALLBACK REGISTRARPASAJEROS(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 	switch (mensaje)
 	{
@@ -181,6 +184,8 @@ BOOL CALLBACK REGISTRARPASAJEROS(HWND handler, UINT mensaje, WPARAM wParam, LPAR
 			SendDlgItemMessage(handler, IDC_APELLIDOS_PASAJEROS, WM_SETTEXT, NULL, (LPARAM)pasajerosActual->apellidosPasajeros);
 			SendDlgItemMessage(handler, IDC_SEXO_PASAJEROS, WM_SETTEXT, NULL, (LPARAM)pasajerosActual->sexoPasajeros);
 			SendDlgItemMessage(handler, IDC_NACIONALIDAD_PASAJEROS, WM_SETTEXT, NULL, (LPARAM)pasajerosActual->nacionalidadPasajeros);
+			SendDlgItemMessage(handler, IDC_FECHA_NACIMIENTO, DTM_GETSYSTEMTIME, NULL, (LPARAM) & (pasajerosActual->fechaNacimientoPasajeros));
+			
 			//SendDlgItemMessage(handler, IDC_Lote, WM_SETTEXT, NULL, (LPARAM)CarnetPersona_actual->Lote);
 			
 
@@ -225,7 +230,9 @@ BOOL CALLBACK REGISTRARPASAJEROS(HWND handler, UINT mensaje, WPARAM wParam, LPAR
 					SendMessage(GetDlgItem(handler, IDC_APELLIDOS_PASAJEROS), WM_GETTEXT, sizeof(pasajerosNuevo->apellidosPasajeros) / sizeof(pasajerosNuevo->apellidosPasajeros[0]), (LPARAM)pasajerosNuevo->apellidosPasajeros);
 					//SendMessage(GetDlgItem(handler, IDC_SEXO_PASAJEROS), WM_GETTEXT, sizeof(pasajerosNuevo->sexoPasajeros) / sizeof(pasajerosNuevo->sexoPasajeros[0]), (LPARAM)pasajerosNuevo->sexoPasajeros);
 					pasajerosNuevo->sexoPasajeros = SendDlgItemMessage(handler, IDC_SEXO_LISTA, CB_GETCURSEL, 0, 0);
-
+					
+					SendDlgItemMessage(handler, IDC_FECHA_NACIMIENTO, DTM_GETSYSTEMTIME, NULL, (LPARAM) & (pasajerosNuevo->fechaNacimientoPasajeros));
+					
 					SendMessage(GetDlgItem(handler, IDC_NACIONALIDAD_PASAJEROS), WM_GETTEXT, sizeof(pasajerosNuevo->nacionalidadPasajeros) / sizeof(pasajerosNuevo->nacionalidadPasajeros[0]), (LPARAM)pasajerosNuevo->nacionalidadPasajeros);
 					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->) / sizeof(vuelosNuevo->[0]), (LPARAM)vuelosNuevo->);
 					
@@ -253,6 +260,7 @@ BOOL CALLBACK REGISTRARPASAJEROS(HWND handler, UINT mensaje, WPARAM wParam, LPAR
 					
 					pasajerosNuevo->sexoPasajeros = SendDlgItemMessage(handler, IDC_SEXO_LISTA, CB_GETCURSEL, 0, 0);
 					SendMessage(GetDlgItem(handler, IDC_NACIONALIDAD_PASAJEROS), WM_GETTEXT, sizeof(pasajerosNuevo->nacionalidadPasajeros) / sizeof(pasajerosNuevo->nacionalidadPasajeros[0]), (LPARAM)pasajerosNuevo->nacionalidadPasajeros);
+					SendDlgItemMessage(handler, IDC_FECHA_NACIMIENTO, DTM_GETSYSTEMTIME, NULL, (LPARAM) & (pasajerosNuevo->fechaNacimientoPasajeros));
 					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->HoraInicio) / sizeof(vuelosNuevo->HoraInicio[0]), (LPARAM)vuelosNuevo->HoraInicio);
 					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->HoraFinal) / sizeof(vuelosNuevo->HoraFinal[0]), (LPARAM)vuelosNuevo->HoraFinal);
 					
@@ -427,6 +435,8 @@ BOOL CALLBACK LISTAPASAJEROS(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 				Pasajeros* aMostrar = pasajerosBuscar(seleccionado);
 				SendDlgItemMessage(handler, IDC_NOMBRE_PASAJEROS, WM_SETTEXT, NULL, (LPARAM)aMostrar->nombresPasajeros);
 				SendDlgItemMessage(handler, IDC_APELLIDOS_PASAJEROS, WM_SETTEXT, NULL, (LPARAM)aMostrar->apellidosPasajeros);
+
+				SendDlgItemMessage(handler, IDC_FECHA_PASAJEROS, WM_SETTEXT, NULL, (LPARAM)fechaNacimientoString(aMostrar->fechaNacimientoPasajeros).c_str());
 				
 				//SendDlgItemMessage(handler, IDC_SEXO_PASAJEROS, WM_SETTEXT, NULL, (LPARAM)aMostrar->sexoPasajeros);
 				

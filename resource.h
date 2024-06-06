@@ -35,7 +35,6 @@
 #define IDD_MANIFIESTO_APELLIDO         147
 #define IDD_PASAJEROS_LISTA             148
 #define IDD_BOLETOS_LISTA               149
-#define IDD_BOLETOS_REGISTRO1           150
 #define IDD_PASE_ABORDAR                150
 #define ID_iniciarSesion                1000
 #define IDC_EDIT1                       1002
@@ -45,6 +44,8 @@
 #define IDC_DATETIMEPICKER1             1004
 #define IDC_EDIT8                       1004
 #define IDC_CONTRASENA                  1004
+#define IDC_FECHA_NACIMIENTO            1004
+#define IDC_FECHA_PASAJEROS             1004
 #define IDC_DATETIMEPICKER2             1005
 #define IDC_EDIT6                       1005
 #define IDC_fechaLlegada                1005
