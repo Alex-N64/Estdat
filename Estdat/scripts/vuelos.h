@@ -6,20 +6,18 @@ struct Vuelos
 {
 	wchar_t vueloOrigen[200];
 	wchar_t vueloDestino[200];
-	
-	
 	wchar_t vueloID[200];
+	
 	int vueloTipoAvion;
-	//int asientos;
-	//wchar_t vueloAsientos[200];
+	int vuelosAsientosTurista;
+	int vuelosAsientosEjecutivo;
+	int vuelosPrecioTurista;
+	int vuelosPrecioEjecutivo;
 
 	SYSTEMTIME vueloFechaSalida;
 	SYSTEMTIME vueloFechaLlegada;
-
 	SYSTEMTIME vueloHoraSalida;
 	SYSTEMTIME vueloHoraLlegada;
-
-
 
 	Vuelos* vuelosSiguiente;
 	Vuelos* vuelosAnterior;
@@ -196,16 +194,23 @@ wstring horaLlegadaString(SYSTEMTIME vueloHoraLlegada) {
 
 
 
+
 BOOL CALLBACK REGISTRARVUELO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 	switch (mensaje)
 	{
 	case WM_INITDIALOG: {
 		
-		SendDlgItemMessage(handler, IDC_tipoAvion, CB_ADDSTRING, NULL, (LPARAM)L"Airbus A380");
-		SendDlgItemMessage(handler, IDC_tipoAvion, CB_ADDSTRING, NULL, (LPARAM)L"Boeing 777");
-		SendDlgItemMessage(handler, IDC_tipoAvion, CB_ADDSTRING, NULL, (LPARAM)L"Boeing 787 Dreamliner");
-		SendDlgItemMessage(handler, IDC_tipoAvion, CB_ADDSTRING, NULL, (LPARAM)L"Airbus A350");
-		SendDlgItemMessage(handler, IDC_tipoAvion, CB_ADDSTRING, NULL, (LPARAM)L"Boeing 737");
+		//SendDlgItemMessage(handler, IDC_tipoAvion, CB_ADDSTRING, NULL, (LPARAM)L"Airbus A380");
+		//SendDlgItemMessage(handler, IDC_tipoAvion, CB_ADDSTRING, NULL, (LPARAM)L"Boeing 777");
+		//SendDlgItemMessage(handler, IDC_tipoAvion, CB_ADDSTRING, NULL, (LPARAM)L"Boeing 787 Dreamliner");
+		//SendDlgItemMessage(handler, IDC_tipoAvion, CB_ADDSTRING, NULL, (LPARAM)L"Airbus A350");
+		//SendDlgItemMessage(handler, IDC_tipoAvion, CB_ADDSTRING, NULL, (LPARAM)L"Boeing 737");
+
+		SendDlgItemMessage(handler, IDC_LIST_TIPO_AVION, LB_ADDSTRING, NULL, (LPARAM)L"Airbus A380");
+		SendDlgItemMessage(handler, IDC_LIST_TIPO_AVION, LB_ADDSTRING, NULL, (LPARAM)L"Boeing 777");
+		SendDlgItemMessage(handler, IDC_LIST_TIPO_AVION, LB_ADDSTRING, NULL, (LPARAM)L"Boeing 787 Dreamliner");
+		SendDlgItemMessage(handler, IDC_LIST_TIPO_AVION, LB_ADDSTRING, NULL, (LPARAM)L"Airbus A350");
+		SendDlgItemMessage(handler, IDC_LIST_TIPO_AVION, LB_ADDSTRING, NULL, (LPARAM)L"Boeing 737");
 
 		string leerVariable;
 		HWND idTraducion = GetDlgItem(handler, IDC_idVuelo);
@@ -261,17 +266,13 @@ BOOL CALLBACK REGISTRARVUELO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 
 					SendMessage(GetDlgItem(handler, IDC_vueloOrigen), WM_GETTEXT, sizeof(vuelosNuevo->vueloOrigen) / sizeof(vuelosNuevo->vueloOrigen[0]), (LPARAM)vuelosNuevo->vueloOrigen);
 					SendMessage(GetDlgItem(handler, IDC_vueloDestino), WM_GETTEXT, sizeof(vuelosNuevo->vueloDestino) / sizeof(vuelosNuevo->vueloDestino[0]), (LPARAM)vuelosNuevo->vueloDestino);
-					
+					SendMessage(GetDlgItem(handler, IDC_idVuelo), WM_GETTEXT, sizeof(vuelosNuevo->vueloID) / sizeof(vuelosNuevo->vueloID[0]), (LPARAM)vuelosNuevo->vueloID);
+
 					SendDlgItemMessage(handler, IDC_fechaSalida, DTM_GETSYSTEMTIME, NULL, (LPARAM) & (vuelosNuevo->vueloFechaSalida));
 					SendDlgItemMessage(handler, IDC_fechaLlegada, DTM_GETSYSTEMTIME, NULL, (LPARAM) & (vuelosNuevo->vueloFechaLlegada));
-					
 					SendDlgItemMessage(handler, IDC_horaSalida, DTM_GETSYSTEMTIME, NULL, (LPARAM) & (vuelosNuevo->vueloHoraSalida));
 					SendDlgItemMessage(handler, IDC_horaLlegada, DTM_GETSYSTEMTIME, NULL, (LPARAM) & (vuelosNuevo->vueloHoraLlegada));
 
-
-					SendMessage(GetDlgItem(handler, IDC_idVuelo), WM_GETTEXT, sizeof(vuelosNuevo->vueloID) / sizeof(vuelosNuevo->vueloID[0]), (LPARAM)vuelosNuevo->vueloID);
-					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->) / sizeof(vuelosNuevo->[0]), (LPARAM)vuelosNuevo->);
-					//SendMessage(GetDlgItem(handler, IDC_asientosDisponibles), WM_GETTEXT, sizeof(vuelosNuevo->vueloAsientos) / sizeof(vuelosNuevo->vueloAsientos[0]), (LPARAM)vuelosNuevo->vueloAsientos);
 					vuelosNuevo->vueloTipoAvion = SendDlgItemMessage(handler, IDC_tipoAvion, CB_GETCURSEL, 0, 0);
 
 					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->) / sizeof(vuelosNuevo->[0]), (LPARAM)vuelosNuevo->);
@@ -318,6 +319,67 @@ BOOL CALLBACK REGISTRARVUELO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 			}
 			return 0;
 		}
+
+		case IDC_LIST_TIPO_AVION:
+		{
+			int seleccionado = SendDlgItemMessage(handler, IDC_LIST_TIPO_AVION, LB_GETCURSEL, NULL, NULL);
+
+			if (seleccionado == 0)
+			{
+				SendDlgItemMessage(handler, IDC_ASIENTOS_TURISTA, WM_SETTEXT, NULL, (LPARAM)L"400");
+				SendDlgItemMessage(handler, IDC_ASIENTOS_EJECUTIVAS, WM_SETTEXT, NULL, (LPARAM)L"80");
+
+				SendDlgItemMessage(handler, IDC_PRECIO_TURISTA, WM_SETTEXT, NULL, (LPARAM)L"$700 USD");
+				SendDlgItemMessage(handler, IDC_PRECIO_EJECUTIVO, WM_SETTEXT, NULL, (LPARAM)L"$3000 USD");
+			}
+
+			else if (seleccionado == 1)
+			{
+				SendDlgItemMessage(handler, IDC_ASIENTOS_TURISTA, WM_SETTEXT, NULL, (LPARAM)L"300");
+				SendDlgItemMessage(handler, IDC_ASIENTOS_EJECUTIVAS, WM_SETTEXT, NULL, (LPARAM)L"50");
+				
+				SendDlgItemMessage(handler, IDC_PRECIO_TURISTA, WM_SETTEXT, NULL, (LPARAM)L"$600 USD");
+				SendDlgItemMessage(handler, IDC_PRECIO_EJECUTIVO, WM_SETTEXT, NULL, (LPARAM)L"$2500 USD");
+			}
+
+			else if (seleccionado == 2)
+			{
+				SendDlgItemMessage(handler, IDC_ASIENTOS_TURISTA, WM_SETTEXT, NULL, (LPARAM)L"240");
+				SendDlgItemMessage(handler, IDC_ASIENTOS_EJECUTIVAS, WM_SETTEXT, NULL, (LPARAM)L"35");
+				
+				SendDlgItemMessage(handler, IDC_PRECIO_TURISTA, WM_SETTEXT, NULL, (LPARAM)L"$800 USD");
+				SendDlgItemMessage(handler, IDC_PRECIO_EJECUTIVO, WM_SETTEXT, NULL, (LPARAM)L"$2800 USD");
+			}
+
+			else if (seleccionado == 3)
+			{
+				SendDlgItemMessage(handler, IDC_ASIENTOS_TURISTA, WM_SETTEXT, NULL, (LPARAM)L"300");
+				SendDlgItemMessage(handler, IDC_ASIENTOS_EJECUTIVAS, WM_SETTEXT, NULL, (LPARAM)L"40");
+				
+				SendDlgItemMessage(handler, IDC_PRECIO_TURISTA, WM_SETTEXT, NULL, (LPARAM)L"$700 USD");
+				SendDlgItemMessage(handler, IDC_PRECIO_EJECUTIVO, WM_SETTEXT, NULL, (LPARAM)L"$3000 USD");
+			}
+
+			else if (seleccionado == 4)
+			{
+				SendDlgItemMessage(handler, IDC_ASIENTOS_TURISTA, WM_SETTEXT, NULL, (LPARAM)L"150");
+				SendDlgItemMessage(handler, IDC_ASIENTOS_EJECUTIVAS, WM_SETTEXT, NULL, (LPARAM)L"16");
+				
+				SendDlgItemMessage(handler, IDC_PRECIO_TURISTA, WM_SETTEXT, NULL, (LPARAM)L"$200 USD");
+				SendDlgItemMessage(handler, IDC_PRECIO_EJECUTIVO, WM_SETTEXT, NULL, (LPARAM)L"$800 USD");
+			}
+
+			else
+			{
+				SendDlgItemMessage(handler, IDC_ASIENTOS_TURISTA, WM_SETTEXT, NULL, (LPARAM)L"");
+				SendDlgItemMessage(handler, IDC_ASIENTOS_EJECUTIVAS, WM_SETTEXT, NULL, (LPARAM)L"");
+				SendDlgItemMessage(handler, IDC_PRECIO_TURISTA, WM_SETTEXT, NULL, (LPARAM)L"");
+				SendDlgItemMessage(handler, IDC_PRECIO_EJECUTIVO, WM_SETTEXT, NULL, (LPARAM)L"");
+
+			}
+			return 0;
+		}
+
 		case IDCANCEL: {
 			EndDialog(handler, 0);
 			return 0;

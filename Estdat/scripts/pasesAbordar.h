@@ -178,8 +178,11 @@ BOOL CALLBACK COMPRARPASES(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lpa
 	{
 	case WM_INITDIALOG:
 	{
-		pasesActualizarLista(handler);
-		pasesActualizarLista(handler);
+		//pasesActualizarLista(handler);
+		//pasesActualizarLista(handler);
+
+		vuelosActualizarLista(handler);
+		pasajerosActualizarLista(handler);
 
 		//SendDlgItemMessage(handler, , CB_ADDSTRING, NULL, (LPARAM)L"");
 

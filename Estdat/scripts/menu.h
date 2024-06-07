@@ -118,7 +118,6 @@ BOOL CALLBACK menu(HWND handler, UINT mensaje, WPARAM wParam, LPARAM lparam) {
 				{
 					SendDlgItemMessage(handler, IDC_tipoAvion_EditBox, WM_SETTEXT, NULL, (LPARAM)L"Airbus A380");
 				}
-
 				else if (aMostrar->vueloTipoAvion == 1)
 				{
 					SendDlgItemMessage(handler, IDC_tipoAvion_EditBox, WM_SETTEXT, NULL, (LPARAM)L"Boeing 777");
