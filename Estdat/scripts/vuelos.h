@@ -26,8 +26,6 @@ struct Vuelos
 Vuelos* vuelosInicio = NULL;
 Vuelos* vuelosActual = NULL;
 
-
-
 void swap(Vuelos* a, Vuelos* b) {
 	Vuelos temp = *a;
 	*a = *b;
@@ -54,23 +52,6 @@ void quickSort(Vuelos* arr, int low, int high) {
 
 		quickSort(arr, low, pi - 1);
 		quickSort(arr, pi + 1, high);
-	}
-}
-
-void heapify(Vuelos* arr, int n, int i) {
-	int largest = i;
-	int l = 2 * i + 1;
-	int r = 2 * i + 2;
-
-	if (l < n && wcscmp(arr[l].vueloOrigen, arr[largest].vueloOrigen) > 0)
-		largest = l;
-
-	if (r < n && wcscmp(arr[r].vueloOrigen, arr[largest].vueloOrigen) > 0)
-		largest = r;
-
-	if (largest != i) {
-		swap(&arr[i], &arr[largest]);
-		heapify(arr, n, largest);
 	}
 }
 
@@ -200,12 +181,6 @@ BOOL CALLBACK REGISTRARVUELO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 	{
 	case WM_INITDIALOG: {
 		
-		//SendDlgItemMessage(handler, IDC_tipoAvion, CB_ADDSTRING, NULL, (LPARAM)L"Airbus A380");
-		//SendDlgItemMessage(handler, IDC_tipoAvion, CB_ADDSTRING, NULL, (LPARAM)L"Boeing 777");
-		//SendDlgItemMessage(handler, IDC_tipoAvion, CB_ADDSTRING, NULL, (LPARAM)L"Boeing 787 Dreamliner");
-		//SendDlgItemMessage(handler, IDC_tipoAvion, CB_ADDSTRING, NULL, (LPARAM)L"Airbus A350");
-		//SendDlgItemMessage(handler, IDC_tipoAvion, CB_ADDSTRING, NULL, (LPARAM)L"Boeing 737");
-
 		SendDlgItemMessage(handler, IDC_LIST_TIPO_AVION, LB_ADDSTRING, NULL, (LPARAM)L"Airbus A380");
 		SendDlgItemMessage(handler, IDC_LIST_TIPO_AVION, LB_ADDSTRING, NULL, (LPARAM)L"Boeing 777");
 		SendDlgItemMessage(handler, IDC_LIST_TIPO_AVION, LB_ADDSTRING, NULL, (LPARAM)L"Boeing 787 Dreamliner");
@@ -230,8 +205,8 @@ BOOL CALLBACK REGISTRARVUELO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 			SendDlgItemMessage(handler, IDC_vueloDestino, WM_SETTEXT, NULL, (LPARAM)vuelosActual->vueloDestino);
 			SendDlgItemMessage(handler, IDC_idVuelo, WM_SETTEXT, NULL, (LPARAM)vuelosActual->vueloID);
 
-			vuelosActual->vueloTipoAvion = SendDlgItemMessage(handler, IDC_tipoAvion, CB_GETCURSEL, 0, 0);
-			//SendDlgItemMessage(handler, IDC_FechaNacimiento, DTM_SETSYSTEMTIME, NULL, (LPARAM) & (CarnetPersona_actual->FechaNacimiento));
+			//vuelosActual->vueloTipoAvion = SendDlgItemMessage(handler, IDC_tipoAvion, CB_GETCURSEL, 0, 0);
+			vuelosActual->vueloTipoAvion = SendDlgItemMessage(handler, IDC_LIST_TIPO_AVION, LB_GETCURSEL, NULL, NULL);
 			//SendDlgItemMessage(handler, IDC_FechaNacimiento, DTM_SETSYSTEMTIME, NULL, (LPARAM) & (CarnetPersona_actual->FechaNacimiento));
 
 		}
@@ -273,9 +248,52 @@ BOOL CALLBACK REGISTRARVUELO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 					SendDlgItemMessage(handler, IDC_horaSalida, DTM_GETSYSTEMTIME, NULL, (LPARAM) & (vuelosNuevo->vueloHoraSalida));
 					SendDlgItemMessage(handler, IDC_horaLlegada, DTM_GETSYSTEMTIME, NULL, (LPARAM) & (vuelosNuevo->vueloHoraLlegada));
 
-					vuelosNuevo->vueloTipoAvion = SendDlgItemMessage(handler, IDC_tipoAvion, CB_GETCURSEL, 0, 0);
+					vuelosNuevo->vueloTipoAvion = SendDlgItemMessage(handler, IDC_LIST_TIPO_AVION, LB_GETCURSEL, NULL, NULL);
+					vuelosNuevo->vuelosAsientosTurista = SendDlgItemMessage(handler, IDC_ASIENTOS_TURISTA, CB_GETCURSEL, 0, 0);
+					vuelosNuevo->vuelosAsientosEjecutivo = SendDlgItemMessage(handler, IDC_ASIENTOS_EJECUTIVAS, CB_GETCURSEL, 0, 0);
 
-					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->) / sizeof(vuelosNuevo->[0]), (LPARAM)vuelosNuevo->);
+					if (vuelosNuevo->vueloTipoAvion == 0)
+					{
+						vuelosNuevo->vuelosAsientosTurista = 400;
+						vuelosNuevo->vuelosAsientosEjecutivo = 80;
+						vuelosNuevo->vuelosPrecioTurista = 700;
+						vuelosNuevo->vuelosPrecioEjecutivo = 3000;
+					}
+					else if (vuelosNuevo->vueloTipoAvion == 1)
+					{
+						vuelosNuevo->vuelosAsientosTurista = 300;
+						vuelosNuevo->vuelosAsientosEjecutivo = 50;
+						vuelosNuevo->vuelosPrecioTurista = 600;
+						vuelosNuevo->vuelosPrecioEjecutivo = 2500;
+					}
+					else if (vuelosNuevo->vueloTipoAvion == 2)
+					{
+						vuelosNuevo->vuelosAsientosTurista = 240;
+						vuelosNuevo->vuelosAsientosEjecutivo = 35;
+						vuelosNuevo->vuelosPrecioTurista = 800;
+						vuelosNuevo->vuelosPrecioEjecutivo = 2800;
+					}
+					else if (vuelosNuevo->vueloTipoAvion == 3)
+					{
+						vuelosNuevo->vuelosAsientosTurista = 300;
+						vuelosNuevo->vuelosAsientosEjecutivo = 40;
+						vuelosNuevo->vuelosPrecioTurista = 700;
+						vuelosNuevo->vuelosPrecioEjecutivo = 3000;
+					}
+					else if (vuelosNuevo->vueloTipoAvion == 4)
+					{
+						vuelosNuevo->vuelosAsientosTurista = 150;
+						vuelosNuevo->vuelosAsientosEjecutivo = 16;
+						vuelosNuevo->vuelosPrecioTurista = 200;
+						vuelosNuevo->vuelosPrecioEjecutivo = 800;
+					}
+					else
+					{
+						vuelosNuevo->vuelosAsientosTurista = 0;
+						vuelosNuevo->vuelosAsientosEjecutivo = 0;
+						vuelosNuevo->vuelosPrecioTurista = 0;
+						vuelosNuevo->vuelosPrecioEjecutivo = 0;
+					}
 
 					vuelosAgregar(vuelosNuevo);
 					vuelosActualizarLista(handler);
@@ -311,7 +329,8 @@ BOOL CALLBACK REGISTRARVUELO(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 					//SendMessage(GetDlgItem(handler, IDC_asientosDisponibles), WM_GETTEXT, sizeof(vuelosNuevo->vueloAsientos) / sizeof(vuelosNuevo->vueloAsientos[0]), (LPARAM)vuelosNuevo->vueloAsientos);
 					//SendMessage(GetDlgItem(handler, ), WM_GETTEXT, sizeof(vuelosNuevo->DiaSemana) / sizeof(vuelosNuevo->DiaSemana[0]), (LPARAM)vuelosNuevo->DiaSemana);
 
-					vuelosNuevo->vueloTipoAvion = SendDlgItemMessage(handler, IDC_tipoAvion, CB_GETCURSEL, 0, 0);
+					//vuelosNuevo->vueloTipoAvion = SendDlgItemMessage(handler, IDC_tipoAvion, CB_GETCURSEL, 0, 0);
+					vuelosNuevo->vueloTipoAvion = SendDlgItemMessage(handler, IDC_LIST_TIPO_AVION, LB_GETCURSEL, NULL, NULL);
 
 					EndDialog(handler, 0);
 				}

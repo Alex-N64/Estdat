@@ -86,6 +86,7 @@
 #define IDC_idVuelo                     1022
 #define IDC_vuelos                      1023
 #define IDC_CHECK_RECORDAR              1024
+#define IDC_PASAJEROS                   1025
 #define IDC_EDIT_VUELOS_ORIGEN          1026
 #define IDC_EDIT_VUELOS_DESTINO         1027
 #define IDC_FECHA_SALIDA                1028
@@ -101,9 +102,12 @@
 #define IDC_NOMBRE_BOLETOS              1040
 #define IDC_ASIENTOS_BOLETOS            1041
 #define IDC_LIST_BOLETOS                1042
+#define IDC_ASIENTOS_EJECUTIVA          1042
 #define IDC_ASIENTOS_TURISTA            1043
 #define IDC_LIST_TIPO_AVION             1046
 #define IDC_PRECIO_TURISTA              1047
+#define IDC_ASIENTOS_TURISTAS_          1048
+#define IDC_ASIENTOS_TURISTAS           1048
 #define ID_VUELOS_REGISTRARVUELO        32771
 #define ID_VUELOS_ELIMINARVUELO         32772
 #define ID_VUELOS_MODIFICARVUELO        32773
@@ -151,7 +155,7 @@
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        135
 #define _APS_NEXT_COMMAND_VALUE         32809
-#define _APS_NEXT_CONTROL_VALUE         1048
+#define _APS_NEXT_CONTROL_VALUE         1049
 #define _APS_NEXT_SYMED_VALUE           110
 #endif
 #endif

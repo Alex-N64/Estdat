@@ -219,35 +219,57 @@ BOOL CALLBACK COMPRARBOLETOS(HWND handler, UINT mensaje, WPARAM wParam, LPARAM l
 				int seleccionado = SendDlgItemMessage(handler, IDC_vuelos, LB_GETCURSEL, NULL, NULL);
 				Vuelos* aMostrarVuelos = vuelosBuscar(seleccionado);
 				SendDlgItemMessage(handler, IDC_ID_BOLETOS, WM_SETTEXT, NULL, (LPARAM)aMostrarVuelos->vueloID);
+				
+				//SendDlgItemMessage(handler, IDC_ASIENTOS_TURISTAS, WM_SETTEXT, NULL, (LPARAM)aMostrarVuelos->vuelosAsientosTurista);
+				//SendDlgItemMessage(handler, IDC_ASIENTOS_EJECUTIVA, WM_SETTEXT, NULL, (LPARAM)aMostrarVuelos->vuelosAsientosEjecutivo);
+				//SendDlgItemMessage(handler, IDC_PRECIO_TURISTA, WM_SETTEXT, NULL, (LPARAM)aMostrarVuelos->vuelosPrecioTurista);
+				//SendDlgItemMessage(handler, IDC_PRECIO_EJECUTIVO, WM_SETTEXT, NULL, (LPARAM)aMostrarVuelos->vuelosPrecioEjecutivo);
+
+				
+
 				//SendDlgItemMessage(handler, IDC_ASIENTOS_BOLETOS, WM_SETTEXT, NULL, (LPARAM)aMostrarVuelos->vueloAsientos);
 				
 				if (aMostrarVuelos->vueloTipoAvion == 0)
 				{
 					SendDlgItemMessage(handler, IDC_TIPO_AVION_BOLETOS, WM_SETTEXT, NULL, (LPARAM)L"Airbus A380");
+					SendDlgItemMessage(handler, IDC_PRECIO_TURISTA, WM_SETTEXT, NULL, (LPARAM)L"$700 USD");
+					SendDlgItemMessage(handler, IDC_PRECIO_EJECUTIVO, WM_SETTEXT, NULL, (LPARAM)L"$3000 USD");
 				}
 
 				else if (aMostrarVuelos->vueloTipoAvion == 1)
 				{
 					SendDlgItemMessage(handler, IDC_TIPO_AVION_BOLETOS, WM_SETTEXT, NULL, (LPARAM)L"Boeing 777");
+					SendDlgItemMessage(handler, IDC_PRECIO_TURISTA, WM_SETTEXT, NULL, (LPARAM)L"$600 USD");
+					SendDlgItemMessage(handler, IDC_PRECIO_EJECUTIVO, WM_SETTEXT, NULL, (LPARAM)L"$2500 USD");
+
 				}
 				else if (aMostrarVuelos->vueloTipoAvion == 2)
 				{
 					SendDlgItemMessage(handler, IDC_TIPO_AVION_BOLETOS, WM_SETTEXT, NULL, (LPARAM)L"Boeing 787 Dreamliner");
+					SendDlgItemMessage(handler, IDC_PRECIO_TURISTA, WM_SETTEXT, NULL, (LPARAM)L"$800 USD");
+					SendDlgItemMessage(handler, IDC_PRECIO_EJECUTIVO, WM_SETTEXT, NULL, (LPARAM)L"$2800 USD");
+
 				}
 				else if (aMostrarVuelos->vueloTipoAvion == 3)
 				{
 					SendDlgItemMessage(handler, IDC_TIPO_AVION_BOLETOS, WM_SETTEXT, NULL, (LPARAM)L"Airbus A350");
+					SendDlgItemMessage(handler, IDC_PRECIO_TURISTA, WM_SETTEXT, NULL, (LPARAM)L"$700 USD");
+					SendDlgItemMessage(handler, IDC_PRECIO_EJECUTIVO, WM_SETTEXT, NULL, (LPARAM)L"$3000 USD");
+
 				}
 				else if (aMostrarVuelos->vueloTipoAvion == 4)
 				{
 					SendDlgItemMessage(handler, IDC_TIPO_AVION_BOLETOS, WM_SETTEXT, NULL, (LPARAM)L"Boeing 737");
+					SendDlgItemMessage(handler, IDC_PRECIO_TURISTA, WM_SETTEXT, NULL, (LPARAM)L"$200 USD");
+					SendDlgItemMessage(handler, IDC_PRECIO_EJECUTIVO, WM_SETTEXT, NULL, (LPARAM)L"$800 USD");
+
 				}
 				else
 				{
 					SendDlgItemMessage(handler, IDC_TIPO_AVION_BOLETOS, WM_SETTEXT, NULL, (LPARAM)L"");
+					SendDlgItemMessage(handler, IDC_PRECIO_TURISTA, WM_SETTEXT, NULL, (LPARAM)L"");
+					SendDlgItemMessage(handler, IDC_PRECIO_EJECUTIVO, WM_SETTEXT, NULL, (LPARAM)L"");
 				}
-
-
 
 				return 0;
 			}
